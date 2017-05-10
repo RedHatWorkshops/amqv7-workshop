@@ -7,5 +7,6 @@ target
 .project
 .settings
 labs/_book
+labs/book.pdf
 labs/node_modules
 

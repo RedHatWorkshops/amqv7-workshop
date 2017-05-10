@@ -2,6 +2,15 @@
 
 These set of labs will help a new user learn how to install, configure and use JBoss AMQ 7. We'll cover topics like clustering, high availability, persistence, and the new Interconnect Router. 
 
+## Prerequisites
+
+To get started with these labs, you'll want to install (and have correctly configured) the following prerequisites:
+
+* JDK 8 ([OpenJDK](http://openjdk.java.net/install/) or [OracleJDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html))
+* [Apache Maven 3.3+](https://maven.apache.org/download.cgi)
+* Zip/Unzip utility
+* [Git Command Line](https://git-scm.com/downloads)
+
 ## Contributing to the labs
 
 We are always happy to accept contributions in the form of correcting errors, adding new labs, making certain points more clear, etc. Please open [Issues](https://github.com/RedHatWorkshops/amqv7-workshop/issues) on this GitHub repo identifying what things you'd like to contribute and then send [Pull Requests](https://github.com/RedHatWorkshops/amqv7-workshop/pulls)!

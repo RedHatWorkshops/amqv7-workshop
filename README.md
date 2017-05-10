@@ -65,18 +65,9 @@ The slides are written in [RevealJS](http://lab.hakim.se/reveal-js/#/)/[Hyla](ht
 
 ## Labs
 
-The labs are written in [Gitbook](https://www.gitbook.com) format (asciidoc) and can be viewed online or in offline book (pdf, epub, mobi) format. 
+The labs are written in [Gitbook](https://www.gitbook.com) format and can be viewed online or in offline book (pdf, epub, mobi) format. 
 
-* [Lab 00](labs/00.md) - Installation 
-* [Lab 01](labs/01.md) - Configuring AMQ 7
-* [Lab 02](labs/02.md) - Producing and Consuming 
-* [Lab 03](labs/03.md) - Persistence / Master-Slave
-* [Lab 03](labs/03.md) - Persistence / Replication
-* [Lab 04](labs/04.md) - Simple Clustering
-* [Lab 05](labs/05.md) - Administration
-* [Lab 06](labs/06.md) - Installing Interconnect Router
-* [Lab 07](labs/07.md) - Connect router to broker
-* [Lab 08](labs/08.md) - Brokerless routing
+See the latest [lab guide](https://redhatworkshops.github.io/amqv7-workshop/index.html) for the lab table of contents;
 
 ## Usecases
 The use cases are expanded deliverables based on the Summit presentation by Christina Lin and cover the following use cases.

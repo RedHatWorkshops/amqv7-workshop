@@ -50,7 +50,7 @@ Let's have a look at each folder:
 * `etc` -- Bootstrap settings for running `artemis` commands
 * `examples` -- handful of useful examples for getting started with AMQ7
 * `lib` -- where the AMQ7 libs and dependencies are packaged
-* `schema`
+* `schema` -- config files schemas
 * `web` -- where the main web console configuration and libraries are stored
 
 ## Creating a Broker

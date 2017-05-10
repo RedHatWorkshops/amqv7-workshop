@@ -181,4 +181,6 @@ Take a quick glance at the log output and note a few things:
 * We see that the web console has been started at `http://localhost:8161`
 * We see that the Jolokia (a JMX over REST) service has been started at `http://localhost:8161/jolokia`
 
-That's it for this lab! Continue on!
+That's it for this lab! 
+
+To learn more about getting started, see the [product documentation at the Red Hat support portal!](https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_amq_broker/getting_started)

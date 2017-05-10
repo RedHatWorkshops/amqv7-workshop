@@ -78,6 +78,17 @@ The labs are written in [Gitbook](https://www.gitbook.com) format (asciidoc) and
 * [Lab 07](labs/07.md) - Connect router to broker
 * [Lab 08](labs/08.md) - Brokerless routing
 
+## Usecases
+The use cases are expanded deliverables based on the Summit presentation by Christina Lin and cover the following use cases.
+
+Trello Project Tracking Link —> https://trello.com/b/NOUVUMcF/a-mq7-delivery-workshop-development
+* [Usecase 01] Telecom Service Provider Topology
+* [Usecase 02] Banking Service Topology
+* [Usecase 03] Healthcare Institution Topology
+* [Usecase 04] Call Center Topology
+* [Usecase 05] Transportation Ticketing Service Topology
+* [Usecase 06] Online Retail Service Toplology
+
 ## Contributing
 
 We welcome all forms of contribution (content, issues/bugs, feedback). Please see the [Contribution guidelines for ways to help](./CONTRIBUTING.md)

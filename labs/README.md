@@ -48,4 +48,22 @@ Lastly, to build the Gitbook as a PDF file, run the following command (from the 
 
     $ gitbook pdf . 
 
-You should see a file named `book.pdf` in the `./labs` folder.  
+You should see a file named `book.pdf` in the `./labs` folder.
+  
+  
+## Updating the https://redhatworkshops.github.io/ labs website
+ 
+To do this, first build the gitbook HTML source, then push to the `gh-pages` branch:
+ 
+    rm -fr _book
+    gitbook build .
+    cd _book
+    git init 
+    git commit --allow-empty -m 'initial commit'
+    git checkout -b gh-pages
+    git add .
+    git commit -am 'updated docs'
+    git push --force https://github.com/RedHatWorkshops/amqv7-workshop.git gh-pages
+     
+All of this can be found in the `publish-labs.sh` script.
+    

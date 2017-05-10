@@ -6,3 +6,6 @@ target
 .classpath
 .project
 .settings
+labs/_book
+labs/node_modules
+

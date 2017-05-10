@@ -1,0 +1,28 @@
+{
+  "title": "JBoss AMQ 7 Labs",
+  "description": "A series of labs intended to go along with the AMQ 7 workshop to help users understand JBoss AMQ 7",
+  "extension": "pdf",
+  "github": "RedHatWorkshops/amqv7-workshop",
+  "githubHost": "https://github.com/",
+  "gitbook": ">=2.0.0",
+
+  "links": {
+    "home": "https://github.com/RedHatWorkshops/amqv7-workshop",
+    "issues": "https://github.com/RedHatWorkshops/amqv7-workshopissues?milestone=none&state=closed"
+  },
+  "plugins": [
+    "anchors"
+  ],
+
+  "pdf": {
+    "toc": true,
+    "fontSize": 12,
+    "paperSize": "a4",
+    "margin": {
+      "right": 62,
+      "left": 62,
+      "top": 36,
+      "bottom": 36
+    }
+  }
+}

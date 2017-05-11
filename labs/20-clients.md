@@ -6,7 +6,7 @@ AMQ7 includes the following supported clients:
 
 * AMQ JMS Client ([official docs](https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_the_amq_jms_client/))
 * AMQ C++ Client ([official docs](https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_the_amq_cpp_client/))
-* AMQ JavaScript Client ([official docs](https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_the_amq_javascript_client/))
+* AMQ JavaScript/NodeJS Client ([official docs](https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_the_amq_javascript_client/))
 * AMQ Python Client ([official docs](https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_the_amq_python_client/))
 * AMQ .NET Client ([official docs](https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_the_amq_.net_client/))
 
@@ -143,3 +143,115 @@ We can also use the failover URI (discussed in future lab) like this:
 
 Options for configuration can be [found at the AMQ7 JMS Client product documentation](https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_the_amq_jms_client/configuration#connection_uri_options_jms)
 
+
+## AMQ NodeJS Client
+
+The AMQ NodeJS client can be used to connect to the AMQ7 broker (or any compatible AMQP 1.0 broker) and can send and receive messages regardless of what clients produced them (ie, they could be MQTT IoT producers for example). 
+
+To use the AMQ NodeJS client, navigate to [https://developers.redhat.com/products/amq/download/](https://developers.redhat.com/products/amq/download/) and locate the AMQ NodeJS (called "JavaScript" in the download portal) Client.
+
+![Download JMS](images/client/download-node-client.png)
+
+When you've downloaded the file, copy it to a location where you'd like to unzip this client.
+
+    $ mv ~/Downloads/nodejs-rhea-0.2.0-1.zip . ./clients/
+    $ cd clients
+    $ unzip nodejs-rhea-0.2.0-1.zip
+    $ cd nodejs-rhea-0.2.0-1
+    
+To run the examples, we'll need to install two dependencies:
+
+    $ npm install debug
+    $ npm install yargs
+    
+Now let's navigate to the `examples` folder and take a look at the application that will receive messages from the broker:
+
+    $ cd node_modules/rhea/examples
+    
+Open up the `simple_recv.js` file in your favorite editor:
+
+```js
+var args = require('yargs').options({
+      'm': { alias: 'messages', default: 100, describe: 'number of messages to expect'},
+      'n': { alias: 'node', default: 'examples', describe: 'name of node (e.g. queue) from which messages are received'},
+      'p': { alias: 'port', default: 5672, describe: 'port to connect to'}
+    }).help('help').argv;
+
+var received = 0;
+var expected = args.messages;
+
+container.on('message', function (context) {
+    if (context.message.id && context.message.id < received) {
+        // ignore duplicate message
+        return;
+    }
+    if (expected === 0 || received < expected) {
+        console.log(JSON.stringify(context.message.body))
+        if (++received === expected) {
+            context.receiver.detach();
+            context.connection.close();
+        }
+    }
+});
+
+container.connect({'port':args.port}).open_receiver(args.node);
+```
+
+
+We see that this simple receiver application tries to connect to a broker on port `5672` by default (which is also the AMQP default port) and tries to read messages from the `examples` queue. Since we have our broker running on port `61616`, let's run our receiver and direct it to connect to our broker on the correct port:
+
+    $ node simple_recv.js -p 61616
+    
+Open another window to run our sender. Navigate back to the same directory where the examples where and run:
+
+    $ node simple_send.js -p 61616
+    
+Note that for the sender, we're also changing its port. Hit enter to run the sender. You should see similar output:
+
+From the receiver:
+
+```
+{"sequence":1}
+. 
+.
+.
+{"sequence":90}
+{"sequence":91}
+{"sequence":92}
+{"sequence":93}
+{"sequence":94}
+{"sequence":95}
+{"sequence":96}
+{"sequence":97}
+{"sequence":98}
+{"sequence":99}
+{"sequence":100}
+```
+
+From the sender:
+
+```
+sent 1
+.
+.
+.
+sent 90
+sent 91
+sent 92
+sent 93
+sent 94
+sent 95
+sent 96
+sent 97
+sent 98
+sent 99
+sent 100
+all messages confirmed
+```
+
+
+
+
+## Other clients
+
+You can download the other clients from the Red Hat support portal or the developers.redhat.com site. At the moment all the clients are available for download there EXCEPT the *Python* and *Linux C++* libraries (for RHEL). Those are available as RPMs through your RHEL subscription. 

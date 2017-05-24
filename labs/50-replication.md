@@ -34,7 +34,7 @@ For further details around message persistence, refer to the product documentati
 
 The following lab demonstrates setting up a 2-node master / slave cluster with shared-nothing replication.
 
-### Lab
+### Lab - Shared-nothing replication between Master / Slave cluster
 
 1. Create a master and slave broker pair by running the following commands:
 
@@ -71,14 +71,22 @@ cp /jboss-amq-7.0.0.redhat-1/examples/features/clustered/clustered-static-discov
       </security-settings>
  ```
 
-4. Startup both the master and slave brokers in separate consoles
+4. Update the cluster-connection section by replacing the message-load-balacing line with the following:
+
+```
+<message-load-balancing>ON_DEMAND</message-load-balancing>
+```
+
+This will prevent message starvation and enable message redistribution between nodes, as described [here](https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_amq_broker/clustering#enabling_message_redistribution)
+
+5. Startup both the master and slave brokers in separate consoles
 
 ```
 ./brokers/master/bin/artemis run
 ./brokers/slave/bin/artemis run
 ```
 
-5.  Using the legacy activemq client, run the following commands in two separate console windows:
+6.  Using the legacy activemq client, run the following commands in two separate console windows:
 
 ```
 java -jar activemq-all-5.11.0.redhat-630187.jar consumer --brokerUrl 'failover:(tcp://localhost:61616,tcp://localhost:61617)' --user admin --password admin --destination queue://TEST
@@ -86,7 +94,7 @@ java -jar activemq-all-5.11.0.redhat-630187.jar consumer --brokerUrl 'failover:(
 java -jar activemq-all-5.11.0.redhat-630187.jar producer --sleep 100 --messageCount 1000 --user admin --password admin --brokerUrl 'failover:(tcp://localhost:61616,tcp://localhost:61617)' —destination queue://TEST
 ```
 
-6. Kill the master broker, and observe failover of both consumer / producer processes to the slave broker
+7. Kill the master broker, and observe failover of both consumer / producer processes to the slave broker
 
-7. Startup the original master broker again.  Kill the slave broker, and notice failover back to the original master.
+8. Startup the original master broker again.  Kill the slave broker, and notice failover back to the original master.
 

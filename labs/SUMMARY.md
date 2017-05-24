@@ -8,6 +8,7 @@
 * [Persistence / Replication](50-replication.md)
 * [Simple Clustering](60-clustering.md) 
 * [Administration](70-admin.md) 
+* [Security](75-security.md)
 * [Installing Interconnect Router](80-install-qdr.md) 
 * [Connect router to broker](90-broker-to-router.md)
 * [Brokerless routing](100-brokerless.md) 

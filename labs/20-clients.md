@@ -1,4 +1,4 @@
-# AMQ Clients
+# AMQ 7 Clients
 
 AMQ 7 comes with several new clients covering a variety of protocols and programming languages. In the past, any supported clients were only released when we released new versions of the AMQ product. With AMQ7 that has changed; each client has its own lifecycle and is released independently from the AMQ broker/server components. 
 

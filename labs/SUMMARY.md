@@ -2,7 +2,7 @@
 
 * [Installing the AMQ7 Broker](00-install-broker.md) 
 * [Configuring AMQ 7](10-configure-broker.md)  
-* [AMQ Clients](20-clients.md)
+* [AMQ 7 Clients](20-clients.md)
 * [Producing and Consuming](30-produce-consume.md)  
 * [Persistence / Master-Slave](40-master-slave.md) 
 * [Persistence / Replication](50-replication.md)

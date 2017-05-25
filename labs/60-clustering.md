@@ -37,6 +37,9 @@ __Node 1__
   <connector name="node2-connector">tcp://localhost:61617</connector>
 </connectors>
 
+<cluster-user>admin</cluster-user>
+<cluster-password>admin</cluster-password>
+
 <cluster-connections>
   <cluster-connection name="static-cluster">
     <connector-ref>node1-connector</connector-ref>
@@ -71,6 +74,9 @@ __Node 2__
   <connector name="node1-connector">tcp://localhost:61616</connector>
   <connector name="node2-connector">tcp://localhost:61617</connector>
 </connectors>
+
+<cluster-user>admin</cluster-user>
+<cluster-password>admin</cluster-password>
 
 <cluster-connections>
   <cluster-connection name="static-cluster">

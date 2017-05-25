@@ -105,6 +105,8 @@ Next, we need to make sure our broker is running. If you've followed from the pr
 
 Our `jndi.properties` file should look like this, with the `connectionfactory.myFactoryLookup` property set to `61616`
 
+NOTE: We need to change the connection factory URL to `61616` since our `acceptor` does not have the other ports open.
+
 ```
 # Set the InitialContextFactory class to use
 java.naming.factory.initial = org.apache.qpid.jms.jndi.JmsInitialContextFactory

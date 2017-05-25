@@ -1,0 +1,432 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Brokerless routing | JBoss AMQ 7 Labs</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    
+    <link rel="prev" href="./90-broker-to-router.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="12"
+        data-chapter-title="Brokerless routing"
+        data-filepath="100-brokerless.md"
+        data-basepath="."
+        data-revision="Thu May 25 2017 15:44:14 GMT-0700 (MST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="00-install-broker.html">
+            
+                
+                    <a href="./00-install-broker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Installing the AMQ7 Broker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="10-configure-broker.html">
+            
+                
+                    <a href="./10-configure-broker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Configuring AMQ 7
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="20-clients.html">
+            
+                
+                    <a href="./20-clients.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        AMQ 7 Clients
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="30-produce-consume.html">
+            
+                
+                    <a href="./30-produce-consume.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Producing and Consuming
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="40-master-slave.html">
+            
+                
+                    <a href="./40-master-slave.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Persistence / Master-Slave
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="50-replication.html">
+            
+                
+                    <a href="./50-replication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Persistence / Replication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="60-clustering.html">
+            
+                
+                    <a href="./60-clustering.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Simple Clustering
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="70-admin.html">
+            
+                
+                    <a href="./70-admin.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Administration
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="75-security.html">
+            
+                
+                    <a href="./75-security.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Security
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="80-install-qdr.html">
+            
+                
+                    <a href="./80-install-qdr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        Installing Interconnect Router
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="90-broker-to-router.html">
+            
+                
+                    <a href="./90-broker-to-router.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        Connect router to broker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="12" data-path="100-brokerless.html">
+            
+                
+                    <a href="./100-brokerless.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Brokerless routing
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >JBoss AMQ 7 Labs</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="brokerless-routing">Brokerless routing</h1>
+<p>Although the Interconnect Router can be used to build large-scale, geographically distributed broker clusters, it also provides a mechanism to do inter-network RPC against a transparent backplane where producers and consumers are decoupled in location (just like with a broker, but without a broker). This gives some of the best of both the messaging and RPC worlds. Let&apos;s take a look.</p>
+<p>In this lab we&apos;ll take a look at configuring the Interconnect Router to route messages to and from an AMQ7 broker. Clients can talk directly to the router and think they&apos;re talking to a broker.</p>
+<p>Take a look in the <code>labs/qdr/brokerless</code> folder. We have three different Interconnect configuration files and a couple different scripts to control the demo. We&apos;ll be using docker to run this demo, so verify you have access to a docker host (either on your laptop with Docker for Mac/Windows, or using Minikube, or using Red Hat CDK 3.0). </p>
+<p>Let&apos;s take a look at the salient parts of the configuration:</p>
+<p>router3.conf:</p>
+<pre><code class="lang-json">listener {
+  role: normal
+  host: <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>
+  port: <span class="hljs-number">5672</span>
+  linkCapacity: <span class="hljs-number">1000</span>
+}
+
+... 
+
+listener {
+  role: inter-router
+  host: <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>
+  port: <span class="hljs-number">10003</span>
+}
+</code></pre>
+<p>Here we see that we&apos;re opening a listener for port <code>5672</code> and for <code>10003</code>. The <code>5672</code> port is for AMQP clients to connect directly to the router mesh. Port <code>10003</code> is for other routers to connect. Note the <code>role</code> each listener has (ie, <code>normal</code> and <code>inter-router</code>). We would expect the other routers to connect to this router via is listener on <code>10003</code>. Also, this router doesn&apos;t have any connectors to any other routers.</p>
+<p>router2.conf:</p>
+<pre><code class="lang-json">listener {
+  role: inter-router
+  host: <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>
+  port: <span class="hljs-number">10002</span>
+}
+
+...
+
+connector {
+    role: inter-router
+    host: router3
+    port: <span class="hljs-number">10003</span>
+    saslMechanisms: ANONYMOUS
+}
+</code></pre>
+<p>In this configuration file, we see that there are <em>no</em> AMQP listeners (nothing listening on <code>5672</code>, and no listeners labeled <code>normal</code>). There is a single listener on port <code>10002</code>. We do see a single connector pointing to the router3 <code>10003</code> port. Let&apos;s look at the last router:</p>
+<p>router1.conf:</p>
+<pre><code class="lang-json">
+listener {
+  role: normal
+  host: <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>
+  port: <span class="hljs-number">5672</span>
+  linkCapacity: <span class="hljs-number">1000</span>
+}
+
+
+...
+
+connector {
+    role: inter-router
+    host: router2
+    port: <span class="hljs-number">10002</span>
+    saslMechanisms: ANONYMOUS
+}
+
+connector {
+    role: inter-router
+    host: router3
+    port: <span class="hljs-number">10003</span>
+    saslMechanisms: ANONYMOUS
+}
+</code></pre>
+<p>In this configuration, we see that this router also exposes an AMQP port on <code>5672</code>. It also connects to the other routers, router 2 on port <code>10002</code> and router 3 on <code>10003</code> </p>
+<p>Now that we see how the routers are connected with each other, let&apos;s bootstrap the router mesh. Make sure you&apos;re in the <code>labs/qdr/brokerless</code> folder and type:</p>
+<pre><code class="lang-bash">./start.sh
+</code></pre>
+<p>This will bootstrap each broker with their respective configuration files and link them together properly. The containers will be running in the background, so you can take a look at each ones logs to verify they&apos;re up correctly:</p>
+<pre><code class="lang-bash">docker logs router1
+<span class="hljs-number">4</span>area\xa1\x010<span class="hljs-string">&quot;
+Thu May 25 13:42:50 2017 ROUTER_CORE (trace) Core action &apos;delete_delivery&apos;
+Thu May 25 13:42:50 2017 ROUTER_CORE (trace) Core action &apos;delete_delivery&apos;
+Thu May 25 13:42:50 2017 ROUTER_CORE (trace) Core action &apos;link_flow&apos;
+Thu May 25 13:42:50 2017 ROUTER_CORE (trace) Core action &apos;link_flow&apos;
+Thu May 25 13:42:50 2017 SERVER (trace) [2]:1 &lt;- @flow(19) [next-incoming-id=2600, incoming-window=2147483647, next-outgoing-id=0, outgoing-window=2147483647, handle=0, delivery-count=2600, link-credit=250, drain=false]
+Thu May 25 13:42:50 2017 SERVER (trace) [2]:0 &lt;- @transfer(20) [handle=0, delivery-id=2604, delivery-tag=b&quot;</span>X\x14\x00\x00\x00\x00\x00\x00<span class="hljs-string">&quot;, message-format=0, settled=true, more=false] (229) &quot;</span>\x00Sr\xd1\x00\x00\x00E\x00\x00\x00\x04\xa3\x0ex-opt-qd.trace\xd0\x00\x00\x00\x0f\x00\x00\x00\x01\xa1\x090/Router3\xa3\x10x-opt-qd.ingress\xa1\x090/Router3\x00Ss\xd0\x00\x00\x00\x1f\x00\x00\x00\x06@@\xa1\x14amqp:/_<span class="hljs-built_in">local</span>/qdhello@@@\x00St\xd1\x00\x00\x00\x13\x00\x00\x00\x02\xa1\x06opcode\xa1\x05HELLO\x00Sw\xd1\x00\x00\x00N\x00\x00\x00\x08\xa1\x04seen\xd0\x00\x00\x00\x16\x00\x00\x00\x02\xa1\x07Router2\xa1\x07Router1\xa1\x08instance\x81\x00\x00\x00\x00Y&amp;\xd5\xd9\xa1\x02id\xa1\x07Router3\xa1\x04area\xa1\x010<span class="hljs-string">&quot;
+</span></code></pre>
+<p>To run the demo, make sure you start a receiver first:</p>
+<pre><code class="lang-bash">./receiver_router3.sh
+</code></pre>
+<p>This will connect to router 3 on its AMQP port (<code>5672</code>) and begin listening for messages on address <code>/myAddress</code>.</p>
+<p>Let&apos;s start the sender:</p>
+<pre><code class="lang-bash">./sender_router1.sh
+</code></pre>
+<p>This will connect to the router 1 on its AMQP port and send messages to address <code>/myAddress</code>. You should see indications of a single message flowing through the mesh (via the sender/receiver logs).</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./90-broker-to-router.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Connect router to broker"><i class="fa fa-angle-left"></i></a>
+        
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"anchors":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

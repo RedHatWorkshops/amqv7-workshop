@@ -1,0 +1,521 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Configuring AMQ 7 | JBoss AMQ 7 Labs</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="./20-clients.html" />
+    
+    
+    <link rel="prev" href="./00-install-broker.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="2"
+        data-chapter-title="Configuring AMQ 7"
+        data-filepath="10-configure-broker.md"
+        data-basepath="."
+        data-revision="Thu May 25 2017 15:44:14 GMT-0700 (MST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="00-install-broker.html">
+            
+                
+                    <a href="./00-install-broker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Installing the AMQ7 Broker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="2" data-path="10-configure-broker.html">
+            
+                
+                    <a href="./10-configure-broker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Configuring AMQ 7
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="20-clients.html">
+            
+                
+                    <a href="./20-clients.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        AMQ 7 Clients
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="30-produce-consume.html">
+            
+                
+                    <a href="./30-produce-consume.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Producing and Consuming
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="40-master-slave.html">
+            
+                
+                    <a href="./40-master-slave.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Persistence / Master-Slave
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="50-replication.html">
+            
+                
+                    <a href="./50-replication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Persistence / Replication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="60-clustering.html">
+            
+                
+                    <a href="./60-clustering.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Simple Clustering
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="70-admin.html">
+            
+                
+                    <a href="./70-admin.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Administration
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="75-security.html">
+            
+                
+                    <a href="./75-security.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Security
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="80-install-qdr.html">
+            
+                
+                    <a href="./80-install-qdr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        Installing Interconnect Router
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="90-broker-to-router.html">
+            
+                
+                    <a href="./90-broker-to-router.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        Connect router to broker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="100-brokerless.html">
+            
+                
+                    <a href="./100-brokerless.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Brokerless routing
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >JBoss AMQ 7 Labs</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="configuring-amq-7">Configuring AMQ 7</h1>
+<p>In this lab, we&apos;ll take a look at the AMQ7 configuration files and some basic configuration options and things to be aware of. For more specific configurations (like persistence, clustering, etc) we&apos;ll dig into those in later labs. </p>
+<p>If we navigate back to our <code>brokers/myfirstbroker</code> installation that we created in the previous lab we can examine our configuration. AMQ7 configuration is stored in eth <code>etc/</code> folder. If we do a listing of the <code>etc/</code> folder we should see something similar to the following:</p>
+<pre><code>$ cd brokers/myfirstbroker
+$ ls -l ./etc/
+</code></pre><pre><code>total 64
+-rw-r--r--  1 ceposta  staff   961B May 10 13:58 artemis-roles.properties
+-rw-r--r--  1 ceposta  staff   1.1K May 10 13:58 artemis-users.properties
+-rw-r--r--  1 ceposta  staff   2.0K May 10 13:58 artemis.profile
+-rw-r--r--  1 ceposta  staff   1.6K May 10 13:58 bootstrap.xml
+-rw-r--r--  1 ceposta  staff   8.0K May 10 13:58 broker.xml
+-rw-r--r--  1 ceposta  staff   2.2K May 10 13:58 logging.properties
+-rw-r--r--  1 ceposta  staff   1.3K May 10 13:58 login.config
+</code></pre><p>For the sake of this lab, we&apos;re going to look closer at the following files</p>
+<ul>
+<li><code>bootstrap.xml</code> -- the entry point to starting a broker</li>
+<li><code>broker.xml</code> -- the main broker configuration file; configures network connections, security, message addresses, etc.</li>
+</ul>
+<p>If you&apos;d like more information on the rest of the files, <a href="https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_amq_broker/basic_configuration#configuration_files_and_locations" target="_blank">see the product documentation on the Red Hat Customer Support portal</a>.</p>
+<h3 id="bootstrapxml">bootstrap.xml</h3>
+<p>The <code>bootstrap.xml</code> file is fairly straight forward and contains a small set of configurations for starting a broker. The most important configuration here is the <code>&lt;server configuration=&quot;&quot;/&gt;</code> element. This configuration setting allows us to instruct the bootstrap runtime where the main configuration file is. We may opt to keep these configuration settings in a version controlled repository that gets installed into the server where the AMQ7 broker runs independently of how/when the broker gets created. Alternatively, if we choose to run our broker in a container environment, we may want to mount in the config files independently of the broker/container. The default setting is:</p>
+<pre><code>&lt;server configuration=&quot;${artemis.URI.instance}/etc/broker.xml&quot;/&gt;
+</code></pre><p>The <code>bootstrap.xml</code> file also designates what applications are installed on the webserver that hosts the management console for our broker. We can configure details about this server (where it binds to, etc) as well as what application are exposed. Have a look at the <code>bootstrap.xml</code> file for more details and default configuration.  </p>
+<p>Lastly, we can specify the bootstrap security configurations, like the JAAS domain name.</p>
+<h3 id="brokerxml">broker.xml</h3>
+<p>The most important configuration file is the <code>broker.xml</code> file. We&apos;ll cover some of the specifics of these configuration settings in subsequent labs, but just be aware, the major sections of configuration:</p>
+<ul>
+<li>persistence</li>
+<li>security</li>
+<li>acceptors</li>
+<li>addresses</li>
+</ul>
+<h4 id="configuration-reload">Configuration Reload</h4>
+<p>Often times we&apos;d like to make changes to the broker while it&apos;s running without taking the broker down. For some certain configurations, we&apos;re able to make changes at runtime while the broker is up and have those changes take effect. By default, every 5s the broker will poll its <code>broker.xml</code> configs and merge in changes it finds. The following sections are allowed to be changed at runtime (and will take effect upon change detection):</p>
+<ul>
+<li>Security</li>
+<li>Address settings</li>
+<li>JMS Queues/Topics</li>
+</ul>
+<p>Note, if we were to remove addresses/queues, these would not be removed upon reload. This could introduce a scenario where we lose messages as a result. We can remove queues using the management features, but not by auto-reload.</p>
+<h4 id="persistence">Persistence</h4>
+<p>In the persistence section, we can configure whether we will use persistence (true/false), what type of journal impelemntation we&apos;ll use (NIO/AIO/JDBC) and the location on disk where the journals will be held for potentially different classes of messages (bindings, large-messages, main journal, etc). You can also tune the journal write buffers, number of files to keep etc, using this group of configuration settings. </p>
+<h4 id="security">Security</h4>
+<p>AMQ7 has fine grained Role Based Access Control for specifying what users can do when they connect and interact with addresses in the messaging system.  Using the Security section of the <code>broker.xml</code> configuration file, we can assign roles to specific permissions such as <code>createDurableQueues</code> or <code>browse</code>, <code>send</code>, or <code>consume</code>, etc. </p>
+<h4 id="acceptors">Acceptors</h4>
+<p>Acceptors are the &quot;window&quot; into the broker and is what clients connect to. Using acceptors we can expose different protocols on different ports, configure things like SSL/TLS and associated keystores, etc. If you look at the configuration for the <code>&lt;acceptors/&gt;</code> section in the <code>broker.xml</code> file, you&apos;ll see something similar to this:</p>
+<pre><code>      &lt;acceptors&gt;
+
+         &lt;!-- Acceptor for every supported protocol --&gt;
+         &lt;acceptor name=&quot;artemis&quot;&gt;tcp://0.0.0.0:61616?tcpSendBufferSize=1048576;tcpReceiveBufferSize=1048576;protocols=CORE,AMQP,STOMP,HORNETQ,MQTT,OPENWIRE;useEpoll=true;amqpCredits=1000;amqpLowCredits=300&lt;/acceptor&gt;
+
+         &lt;!-- AMQP Acceptor.  Listens on default AMQP port for AMQP traffic.--&gt;
+         &lt;acceptor name=&quot;amqp&quot;&gt;tcp://0.0.0.0:5672?tcpSendBufferSize=1048576;tcpReceiveBufferSize=1048576;protocols=AMQP;useEpoll=true;amqpCredits=1000;amqpMinCredits=300&lt;/acceptor&gt;
+
+         &lt;!-- STOMP Acceptor. --&gt;
+         &lt;acceptor name=&quot;stomp&quot;&gt;tcp://0.0.0.0:61613?tcpSendBufferSize=1048576;tcpReceiveBufferSize=1048576;protocols=STOMP;useEpoll=true&lt;/acceptor&gt;
+
+         &lt;!-- HornetQ Compatibility Acceptor.  Enables HornetQ Core and STOMP for legacy HornetQ clients. --&gt;
+         &lt;acceptor name=&quot;hornetq&quot;&gt;tcp://0.0.0.0:5445?protocols=HORNETQ,STOMP;useEpoll=true&lt;/acceptor&gt;
+
+         &lt;!-- MQTT Acceptor --&gt;
+         &lt;acceptor name=&quot;mqtt&quot;&gt;tcp://0.0.0.0:1883?tcpSendBufferSize=1048576;tcpReceiveBufferSize=1048576;protocols=MQTT;useEpoll=true&lt;/acceptor&gt;
+
+      &lt;/acceptors&gt;
+</code></pre><p>For example, to connect as an AMQP client, you&apos;d configure your client to connect on port <code>5672</code> which is the default AMQP port. Alternatively, as you can see, there is a single acceptor that&apos;s capable of detecting and serving multiple protocols that listens on port <code>61616</code>. An AMQP (or STOMP, etc) clinet could also connect to this port.</p>
+<h4 id="addresses">Addresses</h4>
+<p>Lastly, the <code>&lt;addresses/&gt;</code> and <code>&lt;address-settings/&gt;</code> section of the configuration define more granular properties for sets of destinations defined as <em>addresses</em>. In AMQ7, an <em>address</em> is an abstraction of any physical destination (actually, it can be many destinations). An <em>address</em> has a name, 0 or more destinations, and a routing type, of which that can be:</p>
+<table>
+<thead>
+<tr>
+<th>Routing Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anycast</td>
+<td>Deliver messages in a point-to-point manner</td>
+</tr>
+<tr>
+<td>Multicast</td>
+<td>Deliver messages to all consumers in a group</td>
+</tr>
+</tbody>
+</table>
+<p>We can associate an address with 0 or more physical queues. By default, AMQ7 configuration has the following addresses configured:</p>
+<pre><code>      &lt;addresses&gt;
+         &lt;address name=&quot;DLQ&quot;&gt;
+            &lt;anycast&gt;
+               &lt;queue name=&quot;DLQ&quot; /&gt;
+            &lt;/anycast&gt;
+         &lt;/address&gt;
+         &lt;address name=&quot;ExpiryQueue&quot;&gt;
+            &lt;anycast&gt;
+               &lt;queue name=&quot;ExpiryQueue&quot; /&gt;
+            &lt;/anycast&gt;
+         &lt;/address&gt;
+      &lt;/addresses&gt;
+</code></pre><h2 id="exercise">Exercise</h2>
+<p>In this lab, we&apos;re going to do two things:</p>
+<ol>
+<li>Remove all of the <code>acceptors</code> except the default one on port <code>61616</code> which can handle all protocols</li>
+<li>Add a new address and route it to a queue</li>
+</ol>
+<p>First, make sure your broker is stopped. In the previous lab we started the broker in the foreground; if it&apos;s still running, do a CTL+C (^C) to gracefully bring it down. </p>
+<h3 id="1-remove-all-acceptors">1. Remove all acceptors</h3>
+<p>Now, using your favorite text editor, open the <code>etc/broker.xml</code> file and find the section for the <code>acceptors</code>:</p>
+<pre><code>      &lt;acceptors&gt;
+
+         &lt;!-- Acceptor for every supported protocol --&gt;
+         &lt;acceptor name=&quot;artemis&quot;&gt;tcp://0.0.0.0:61616?tcpSendBufferSize=1048576;tcpReceiveBufferSize=1048576;protocols=CORE,AMQP,STOMP,HORNETQ,MQTT,OPENWIRE;useEpoll=true;amqpCredits=1000;amqpLowCredits=300&lt;/acceptor&gt;
+
+         &lt;!-- AMQP Acceptor.  Listens on default AMQP port for AMQP traffic.--&gt;
+         &lt;acceptor name=&quot;amqp&quot;&gt;tcp://0.0.0.0:5672?tcpSendBufferSize=1048576;tcpReceiveBufferSize=1048576;protocols=AMQP;useEpoll=true;amqpCredits=1000;amqpMinCredits=300&lt;/acceptor&gt;
+
+         &lt;!-- STOMP Acceptor. --&gt;
+         &lt;acceptor name=&quot;stomp&quot;&gt;tcp://0.0.0.0:61613?tcpSendBufferSize=1048576;tcpReceiveBufferSize=1048576;protocols=STOMP;useEpoll=true&lt;/acceptor&gt;
+
+         &lt;!-- HornetQ Compatibility Acceptor.  Enables HornetQ Core and STOMP for legacy HornetQ clients. --&gt;
+         &lt;acceptor name=&quot;hornetq&quot;&gt;tcp://0.0.0.0:5445?protocols=HORNETQ,STOMP;useEpoll=true&lt;/acceptor&gt;
+
+         &lt;!-- MQTT Acceptor --&gt;
+         &lt;acceptor name=&quot;mqtt&quot;&gt;tcp://0.0.0.0:1883?tcpSendBufferSize=1048576;tcpReceiveBufferSize=1048576;protocols=MQTT;useEpoll=true&lt;/acceptor&gt;
+
+      &lt;/acceptors&gt;
+</code></pre><p>Delete all of the acceptors <strong>except</strong> the one listening on port <code>61616</code>. Your configuration for <code>acceptors</code> should look like this:</p>
+<pre><code>      &lt;acceptors&gt;
+
+         &lt;!-- Acceptor for every supported protocol --&gt;
+         &lt;acceptor name=&quot;artemis&quot;&gt;tcp://0.0.0.0:61616?tcpSendBufferSize=1048576;tcpReceiveBufferSize=1048576;protocols=CORE,AMQP,STOMP,HORNETQ,MQTT,OPENWIRE;useEpoll=true;amqpCredits=1000;amqpLowCredits=300&lt;/acceptor&gt;
+
+      &lt;/acceptors&gt;
+</code></pre><p>Now start up your broker in the foreground like we did in the previous lab:</p>
+<pre><code>./bin/artemis run
+</code></pre><p>When the broker starts up, you should see ONLY the single acceptor in the logs (see below). You will see logs saying protocol modules have been found, but that&apos;s OKAY. </p>
+<p><img src="images/configuration/startup.png" alt="Single acceptor started up"></p>
+<h3 id="2-add-a-new-address">2. Add a new address</h3>
+<p>Now that our broker is running, let&apos;s try adding a new address and watch it reload the configuration automatically. Fire up your favorite editor again and edit the <code>etc/broker.xml</code> file.</p>
+<p>Add the following section to the <code>addresses</code> section:</p>
+<pre><code>    &lt;address name=&quot;address.helloworld&quot;&gt;
+      &lt;anycast&gt;
+        &lt;queue name=&quot;foo&quot;/&gt;
+      &lt;/anycast&gt;
+    &lt;/address&gt;
+</code></pre><p>The configuration should look like this once edited:</p>
+<pre><code>      &lt;addresses&gt;
+         &lt;address name=&quot;address.helloworld&quot;&gt;
+            &lt;anycast&gt;
+               &lt;queue name=&quot;foo&quot;/&gt;
+            &lt;/anycast&gt;
+         &lt;/address&gt;
+         &lt;address name=&quot;DLQ&quot;&gt;
+            &lt;anycast&gt;
+               &lt;queue name=&quot;DLQ&quot; /&gt;
+            &lt;/anycast&gt;
+         &lt;/address&gt;
+         &lt;address name=&quot;ExpiryQueue&quot;&gt;
+            &lt;anycast&gt;
+               &lt;queue name=&quot;ExpiryQueue&quot; /&gt;
+            &lt;/anycast&gt;
+         &lt;/address&gt;
+      &lt;/addresses&gt;
+</code></pre><p>Now save your configuration file, wait at most 5s (the default refresh scan) and watch the broker logs to see if any changes have been detected:</p>
+<p>You should see something similar to the following:</p>
+<pre><code>15:39:33,873 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration ...security
+15:39:33,875 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration ...address settings
+15:39:33,875 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration ...diverts
+15:39:33,875 INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration ...addresses
+15:39:33,879 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying queue foo
+15:39:33,887 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying queue DLQ
+15:39:33,887 INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying queue ExpiryQueue
+</code></pre><p>That completes this lab! To see more in depth, follow the <a href="https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_amq_broker/basic_configuration#configuration_files_and_locations" target="_blank">product documentation on the Red Hat Customer Support portal</a></p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./00-install-broker.html" class="navigation navigation-prev " aria-label="Previous page: Installing the AMQ7 Broker"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./20-clients.html" class="navigation navigation-next " aria-label="Next page: AMQ 7 Clients"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"anchors":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

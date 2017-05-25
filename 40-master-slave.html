@@ -1,0 +1,469 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Persistence / Master-Slave | JBoss AMQ 7 Labs</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="./50-replication.html" />
+    
+    
+    <link rel="prev" href="./30-produce-consume.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="5"
+        data-chapter-title="Persistence / Master-Slave"
+        data-filepath="40-master-slave.md"
+        data-basepath="."
+        data-revision="Thu May 25 2017 15:44:14 GMT-0700 (MST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="00-install-broker.html">
+            
+                
+                    <a href="./00-install-broker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Installing the AMQ7 Broker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="10-configure-broker.html">
+            
+                
+                    <a href="./10-configure-broker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Configuring AMQ 7
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="20-clients.html">
+            
+                
+                    <a href="./20-clients.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        AMQ 7 Clients
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="30-produce-consume.html">
+            
+                
+                    <a href="./30-produce-consume.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Producing and Consuming
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="5" data-path="40-master-slave.html">
+            
+                
+                    <a href="./40-master-slave.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Persistence / Master-Slave
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="50-replication.html">
+            
+                
+                    <a href="./50-replication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Persistence / Replication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="60-clustering.html">
+            
+                
+                    <a href="./60-clustering.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Simple Clustering
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="70-admin.html">
+            
+                
+                    <a href="./70-admin.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Administration
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="75-security.html">
+            
+                
+                    <a href="./75-security.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Security
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="80-install-qdr.html">
+            
+                
+                    <a href="./80-install-qdr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        Installing Interconnect Router
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="90-broker-to-router.html">
+            
+                
+                    <a href="./90-broker-to-router.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        Connect router to broker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="100-brokerless.html">
+            
+                
+                    <a href="./100-brokerless.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Brokerless routing
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >JBoss AMQ 7 Labs</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="masterslave--shared-store">Master/Slave - Shared Store</h1>
+<p>A-MQ 7 has the ability to run in a master/slave (ie, active/passive) configuration so that if an active node goes down, another can immediately take its place and continue serving clients and processing messages. There are a few different options that can be used to achieve this:</p>
+<ul>
+<li>Shared store</li>
+<li>Replicated store (ie, &quot;shared nothing&quot;)</li>
+<li>Co-located</li>
+</ul>
+<p>For the purpose of this lab, we will focus on the &quot;Shared store&quot; option for persistence, and use the &quot;Static&quot; option for clustering.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Download and install the A-MQ 7 broker package as described in <a href="00-install-broker.html">Lab 1</a>.</p>
+<h2 id="creating-the-brokers">Creating the brokers</h2>
+<pre><code>$ $AMQ_HOME/bin/artemis create brokers/master --name master --user admin --password admin --allow-anonymous
+$ $AMQ_HOME/bin/artemis create brokers/slave --name slave --user admin --password admin --allow-anonymous --port-offset 1
+</code></pre><p><em>Note: We could have passed in some extra arguments to configure our master/slave pair with some defaults, but instead we&apos;re going to manually configure them via the <code>broker.xml</code> file so we can become familiar with the available options.</em></p>
+<h2 id="editing-the-configuration">Editing the configuration</h2>
+<p><strong>Master</strong></p>
+<ol>
+<li><p>Open up the <code>brokers/master/etc/broker.xml</code> file in your favorite text editor.</p>
+</li>
+<li><p>Modify the existing <code>paging-directory</code>, <code>bindings-directory</code>, <code>journal-directory</code>, and <code>large-messages-directory</code> elements to point to a shared mount. In the real world, this would likely point to a directory on a SAN that is mounted on both the master and slave machines.</p>
+</li>
+</ol>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">paging-directory</span>&gt;</span>../sharedstore/data/paging<span class="hljs-tag">&lt;/<span class="hljs-title">paging-directory</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">bindings-directory</span>&gt;</span>../sharedstore/data/bindings<span class="hljs-tag">&lt;/<span class="hljs-title">bindings-directory</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">journal-directory</span>&gt;</span>../sharedstore/data/journal<span class="hljs-tag">&lt;/<span class="hljs-title">journal-directory</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">large-messages-directory</span>&gt;</span>../sharedstore/data/large-messages<span class="hljs-tag">&lt;/<span class="hljs-title">large-messages-directory</span>&gt;</span>
+</code></pre>
+<ol>
+<li>Add the following elements anywhere under the <code>&lt;core&gt;</code> element:</li>
+</ol>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">connectors</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">connector</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;master-connector&quot;</span>&gt;</span>tcp://localhost:61616<span class="hljs-tag">&lt;/<span class="hljs-title">connector</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">connector</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;slave-connector&quot;</span>&gt;</span>tcp://localhost:61617<span class="hljs-tag">&lt;/<span class="hljs-title">connector</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">connectors</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">cluster-user</span>&gt;</span>admin<span class="hljs-tag">&lt;/<span class="hljs-title">cluster-user</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">cluster-password</span>&gt;</span>admin<span class="hljs-tag">&lt;/<span class="hljs-title">cluster-password</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">cluster-connections</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">cluster-connection</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;static-cluster&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">connector-ref</span>&gt;</span>master-connector<span class="hljs-tag">&lt;/<span class="hljs-title">connector-ref</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">static-connectors</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">connector-ref</span>&gt;</span>slave-connector<span class="hljs-tag">&lt;/<span class="hljs-title">connector-ref</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">static-connectors</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">cluster-connection</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">cluster-connections</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">ha-policy</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">shared-store</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">master</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">failover-on-shutdown</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">failover-on-shutdown</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">master</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">shared-store</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">ha-policy</span>&gt;</span>
+</code></pre>
+<ol>
+<li>Start the broker:</li>
+</ol>
+<pre><code>$ ./brokers/node1/bin/artemis run
+</code></pre><p><strong>Slave</strong></p>
+<ol>
+<li><p>Open up the <code>brokers/slave/etc/broker.xml</code> file in your favorite text editor.</p>
+</li>
+<li><p>Modify the existing <code>paging-directory</code>, <code>bindings-directory</code>, <code>journal-directory</code>, and <code>large-messages-directory</code> elements to point to a shared mount. In the real world, this would likely point to a directory on a SAN that is mounted on both the master and slave machines.</p>
+</li>
+</ol>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">paging-directory</span>&gt;</span>../sharedstore/data/paging<span class="hljs-tag">&lt;/<span class="hljs-title">paging-directory</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">bindings-directory</span>&gt;</span>../sharedstore/data/bindings<span class="hljs-tag">&lt;/<span class="hljs-title">bindings-directory</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">journal-directory</span>&gt;</span>../sharedstore/data/journal<span class="hljs-tag">&lt;/<span class="hljs-title">journal-directory</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">large-messages-directory</span>&gt;</span>../sharedstore/data/large-messages<span class="hljs-tag">&lt;/<span class="hljs-title">large-messages-directory</span>&gt;</span>
+</code></pre>
+<ol>
+<li>Add the following elements anywhere under the <code>&lt;core&gt;</code> element:</li>
+</ol>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">connectors</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">connector</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;master-connector&quot;</span>&gt;</span>tcp://localhost:61616<span class="hljs-tag">&lt;/<span class="hljs-title">connector</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">connector</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;slave-connector&quot;</span>&gt;</span>tcp://localhost:61617<span class="hljs-tag">&lt;/<span class="hljs-title">connector</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">connectors</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">cluster-user</span>&gt;</span>admin<span class="hljs-tag">&lt;/<span class="hljs-title">cluster-user</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">cluster-password</span>&gt;</span>admin<span class="hljs-tag">&lt;/<span class="hljs-title">cluster-password</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">cluster-connections</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">cluster-connection</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;static-cluster&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">connector-ref</span>&gt;</span>slave-connector<span class="hljs-tag">&lt;/<span class="hljs-title">connector-ref</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">static-connectors</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">connector-ref</span>&gt;</span>master-connector<span class="hljs-tag">&lt;/<span class="hljs-title">connector-ref</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">static-connectors</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">cluster-connection</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">cluster-connections</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">ha-policy</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">shared-store</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">slave</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">failover-on-shutdown</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">failover-on-shutdown</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">allow-failback</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">allow-failback</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">slave</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">shared-store</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">ha-policy</span>&gt;</span>
+</code></pre>
+<ol>
+<li>Start the broker:</li>
+</ol>
+<pre><code>$ ./brokers/node2/bin/artemis run
+</code></pre><h2 id="testing">Testing</h2>
+<ol>
+<li>Open up a new terminal window and run the following command:</li>
+</ol>
+<pre><code>$ $AMQ_HOME/bin/artemis producer --verbose --user admin --password admin --message-count 100 --url &apos;tcp://localhost:61616&apos;
+</code></pre><ol>
+<li><p>Shut down the master broker (ie, by hitting ctrl-c on its terminal). You should see the slave broker log a few messages indicating that it has come online (this might take a couple of seconds).</p>
+</li>
+<li><p>In the same terminal window that you ran the producer command, run the following command:</p>
+</li>
+</ol>
+<pre><code>$ $AMQ_HOME/bin/artemis consumer --verbose --user admin --password admin --message-count 100 --url &apos;tcp://localhost:61617&apos;
+</code></pre><p>All of the messages that you produced to the master broker in step 1 should be consumed from the slave broker.</p>
+<ol>
+<li>(optional) Restart the master broker and you should see that it will take over and the slave will shut down/go back into slave mode (this might take a couple of seconds).</li>
+</ol>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./30-produce-consume.html" class="navigation navigation-prev " aria-label="Previous page: Producing and Consuming"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./50-replication.html" class="navigation navigation-next " aria-label="Next page: Persistence / Replication"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"anchors":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

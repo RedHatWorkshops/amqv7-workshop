@@ -1,0 +1,599 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Producing and Consuming | JBoss AMQ 7 Labs</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="./40-master-slave.html" />
+    
+    
+    <link rel="prev" href="./20-clients.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="4"
+        data-chapter-title="Producing and Consuming"
+        data-filepath="30-produce-consume.md"
+        data-basepath="."
+        data-revision="Thu May 25 2017 15:44:14 GMT-0700 (MST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="00-install-broker.html">
+            
+                
+                    <a href="./00-install-broker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Installing the AMQ7 Broker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="10-configure-broker.html">
+            
+                
+                    <a href="./10-configure-broker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Configuring AMQ 7
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="20-clients.html">
+            
+                
+                    <a href="./20-clients.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        AMQ 7 Clients
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="4" data-path="30-produce-consume.html">
+            
+                
+                    <a href="./30-produce-consume.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Producing and Consuming
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="40-master-slave.html">
+            
+                
+                    <a href="./40-master-slave.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Persistence / Master-Slave
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="50-replication.html">
+            
+                
+                    <a href="./50-replication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Persistence / Replication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="60-clustering.html">
+            
+                
+                    <a href="./60-clustering.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Simple Clustering
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="70-admin.html">
+            
+                
+                    <a href="./70-admin.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Administration
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="75-security.html">
+            
+                
+                    <a href="./75-security.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Security
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="80-install-qdr.html">
+            
+                
+                    <a href="./80-install-qdr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        Installing Interconnect Router
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="90-broker-to-router.html">
+            
+                
+                    <a href="./90-broker-to-router.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        Connect router to broker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="100-brokerless.html">
+            
+                
+                    <a href="./100-brokerless.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Brokerless routing
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >JBoss AMQ 7 Labs</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="producing-and-consuming">Producing and Consuming</h1>
+<p>AMQ7 has many features. We are going to work through a couple of those features, but at the end of this lab you should feel comfortable with some of the basics. We&apos;ll leave suggestions at the end for where to learn more about the other features not covered in this lab.</p>
+<h2 id="use-cases">Use cases:</h2>
+<ul>
+<li>Send messages to the broker</li>
+<li>Receive messages from the broker</li>
+<li>Request Reply</li>
+<li>Dead Letter Queue (DLQ)</li>
+<li>Last Value queue</li>
+</ul>
+<h2 id="before-we-begin">Before we begin</h2>
+<p>In the previous labs we&apos;ve installed and configured our broker. We eliminated the individual ports/protocols and are happy to have all protocols go through the default <code>Acceptor</code> at port <code>61616</code>. For the remainder of this section, please verify that your broker is running and able to take connections. Each of the next sections assumes this is the case.</p>
+<h3 id="send">Send</h3>
+<p>Let&apos;s look at how to easily send and consume messages from a queue. In the <a href="20-clients.html">previous lab</a>, we explored some of the client APIs. How we send messages to the broker will depend on what programming language and API you wish to use. But what if you just want to quickly test whether the broker is up? Or that some configuration you changed is working as expcted? What if you just want to send some sample load to the broker and don&apos;t want to build a producer/client from scratch? Luckily, Artemis comes with some tools for exploring these scenarios.</p>
+<p>You should have your <code>myfirstbroker</code> running with:</p>
+<pre><code class="lang-bash">$ ./bin/artemis run
+</code></pre>
+<p>This should give you a broker running in the foreground. </p>
+<p>In a different window try running the following command:</p>
+<pre><code class="lang-bash">$ ./bin/artemis <span class="hljs-built_in">help</span> producer
+</code></pre>
+<p>This should show a help guide for how to use a simple producer to send messages to the AMQ7 broker.</p>
+<p>Let&apos;s try sending messages:</p>
+<pre><code class="lang-bash">$ ./bin/artemis producer --destination address.helloworld --message-count <span class="hljs-number">100</span> --url tcp://localhost:<span class="hljs-number">61616</span>
+</code></pre>
+<p>If we <a href="http://localhost:8161/hawtio" target="_blank">go to the Broker web console</a> at <a href="http://localhost:8161/hawtio" target="_blank">http://localhost:8161/hawtio</a> we should see that we now have <code>100</code> messages in the <code>foo</code> queue. Remember from the first lab, we created a new address called <code>address.helloworld</code> and bound it as an <code>Anycast</code> address to the <code>foo</code> queue.</p>
+<blockquote>
+<p>Note: use the credentials you set when we created the broker; admin/admin    </p>
+</blockquote>
+<p><img src="images/produce-consume/producer-message-count.png" alt=""></p>
+<p>Let&apos;s use the same tools to consume messages.</p>
+<h3 id="receive">Receive</h3>
+<p>Let&apos; use the same CLI tools to simulate consumption from addresses on the broker. Let&apos;s try to consume from the same address <code>address.helloworld</code> -- but let&apos;s not consume all the messages. Let&apos;s start by consuming  <code>50</code> of the messages. Just like in the previous section, we want to make sure the broker is up and running and listening on port <code>61616</code>. In a separate window, let&apos;s take a look at the parameters for the <code>consumer</code> command:</p>
+<pre><code class="lang-bash">$ ./bin/artemis <span class="hljs-built_in">help</span> consumer
+</code></pre>
+<p>Now let&apos;s try to consume 50 messages from the <code>foo</code> queue (remember, our <code>Anycast</code> address was bound to <code>foo</code>):</p>
+<pre><code class="lang-bash">$ ./bin/artemis consumer --destination foo  --message-count=<span class="hljs-number">50</span> --url tcp://localhost:<span class="hljs-number">61616</span>
+</code></pre>
+<p>You should get output similar to this:</p>
+<pre><code class="lang-bash">Consumer:: filter = null
+Consumer ActiveMQQueue[foo], thread=<span class="hljs-number">0</span> <span class="hljs-built_in">wait</span> until <span class="hljs-number">50</span> messages are consumed
+Consumer ActiveMQQueue[foo], thread=<span class="hljs-number">0</span> Received <span class="hljs-built_in">test</span> message: <span class="hljs-number">0</span>
+.
+.
+.
+Consumer ActiveMQQueue[foo], thread=<span class="hljs-number">0</span> Received <span class="hljs-built_in">test</span> message: <span class="hljs-number">39</span>
+Consumer ActiveMQQueue[foo], thread=<span class="hljs-number">0</span> Received <span class="hljs-built_in">test</span> message: <span class="hljs-number">40</span>
+Consumer ActiveMQQueue[foo], thread=<span class="hljs-number">0</span> Received <span class="hljs-built_in">test</span> message: <span class="hljs-number">41</span>
+Consumer ActiveMQQueue[foo], thread=<span class="hljs-number">0</span> Received <span class="hljs-built_in">test</span> message: <span class="hljs-number">42</span>
+Consumer ActiveMQQueue[foo], thread=<span class="hljs-number">0</span> Received <span class="hljs-built_in">test</span> message: <span class="hljs-number">43</span>
+Consumer ActiveMQQueue[foo], thread=<span class="hljs-number">0</span> Received <span class="hljs-built_in">test</span> message: <span class="hljs-number">44</span>
+Consumer ActiveMQQueue[foo], thread=<span class="hljs-number">0</span> Received <span class="hljs-built_in">test</span> message: <span class="hljs-number">45</span>
+Consumer ActiveMQQueue[foo], thread=<span class="hljs-number">0</span> Received <span class="hljs-built_in">test</span> message: <span class="hljs-number">46</span>
+Consumer ActiveMQQueue[foo], thread=<span class="hljs-number">0</span> Received <span class="hljs-built_in">test</span> message: <span class="hljs-number">47</span>
+Consumer ActiveMQQueue[foo], thread=<span class="hljs-number">0</span> Received <span class="hljs-built_in">test</span> message: <span class="hljs-number">48</span>
+Consumer ActiveMQQueue[foo], thread=<span class="hljs-number">0</span> Received <span class="hljs-built_in">test</span> message: <span class="hljs-number">49</span>
+</code></pre>
+<p>So now if we look at our console, we should see that <code>50</code> messages are still left on our queue <code>foo</code>:</p>
+<p><img src="images/produce-consume/consume-50.png" alt="Consumed 50"></p>
+<p>No go find where your broker is running and let&apos;s kill the broker. If we try to consume from the broker at this point, we should see that we cannot establish a connection. When we restart the broker, we exepct our messages to still be on the broker and availabe for consumption. Let&apos;s fire up the broker again:</p>
+<pre><code class="lang-bash">$ ./bin/artemis run
+</code></pre>
+<p>Navigate back to the web console and verify we still have <code>50</code> messages on the queue <code>foo</code>.</p>
+<p>Let&apos;s consume the last <code>50</code> messages:</p>
+<pre><code class="lang-bash">$ ./bin/artemis consumer --destination foo  --message-count=<span class="hljs-number">50</span> --url tcp://localhost:<span class="hljs-number">61616</span>
+</code></pre>
+<p>And we should see our queue is now empty:</p>
+<p><img src="images/produce-consume/consumer-drain.png" alt="Consumed 50"></p>
+<h3 id="request-reply">Request Reply</h3>
+<p>Messaging is typically used to decouple producers and consumers in two main dimensions: time, and space. When will a consumer see messages? Who knows, but it&apos;s not the producer&apos;s responsibility. Where do the consumers even live? Again, not a detail a producer should be coupled to. However, there are use cases where producing messages/events will necessitate a response from <em>some</em> consumer downstream. You may already have usecases implemented like this using some legacy proprietary queuing system and would like a nice replacement for that legacy system but cannot change your application. However you come across a request-reply usecase here&apos;s what it looks like with JBoss AMQ7. </p>
+<p>In the root of the AMQ7 broker installation, there is an <code>examples</code> folder. There are a handful of nice examples here. Navigate to:</p>
+<pre><code class="lang-bash">$ <span class="hljs-built_in">cd</span> <span class="hljs-variable">$AMQ7_BASE</span>/examples/features/standard/request-reply
+</code></pre>
+<p>Let&apos;s run the example. Note, just like in the previous sections, we need to have a broker running:</p>
+<pre><code class="lang-bash">$ mvn verify -DnoServer=<span class="hljs-literal">true</span>
+</code></pre>
+<p>We should see an output like this:</p>
+<pre><code class="lang-bash">[INFO] --- artemis-maven-plugin:<span class="hljs-number">2.0</span>.<span class="hljs-number">0</span>.amq-<span class="hljs-number">700005</span>-redhat-<span class="hljs-number">1</span>:runClient (runClient) @ request-reply ---
+Request message sent.
+Received request message: A request message
+Reply to queue: ActiveMQTemporaryQueue[d6677193-fef2-<span class="hljs-number">4</span>fee-<span class="hljs-number">9</span>f8b<span class="hljs-operator">-d</span>84b08eaff37]
+Reply sent
+Received reply: A reply message
+CorrelatedId: ID:<span class="hljs-number">76</span>c9b485-<span class="hljs-number">39</span>ba-<span class="hljs-number">11</span>e7-b79b-<span class="hljs-number">0</span>a0027000003
+We found matched request: A request message
+[INFO] 
+[INFO] --- artemis-maven-plugin:<span class="hljs-number">2.0</span>.<span class="hljs-number">0</span>.amq-<span class="hljs-number">700005</span>-redhat-<span class="hljs-number">1</span>:cli (stop) @ request-reply ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: <span class="hljs-number">4.427</span> s
+[INFO] Finished at: <span class="hljs-number">2017</span>-<span class="hljs-number">05</span>-<span class="hljs-number">15</span>T15:<span class="hljs-number">04</span>:<span class="hljs-number">27</span>-<span class="hljs-number">07</span>:<span class="hljs-number">00</span>
+[INFO] Final Memory: <span class="hljs-number">37</span>M/<span class="hljs-number">457</span>M
+[INFO] ------------------------------------------------------------------------
+</code></pre>
+<p>So what happened here? We sent a message to a queue and got a response. But what does this look like?</p>
+<p>If you open the <code>Java</code> source file in the <code>request-reply</code> project  <code>src/main/java//org/apache/activemq/artemis/jms/example/RequestReplyExample.java</code> we can see a little about how this happens.</p>
+<p>First we set up the connection-factory infromation and make a connection to the broker. Then we do the following:</p>
+<ol>
+<li>Set up the producer</li>
+</ol>
+<p>For this, we create a producer to the &quot;request queue&quot; but we also create a temporary destination and attach a consumer to that temporary destination. This simulates the producer sending a message and also waiting for a response on the temporary destination:</p>
+<pre><code class="lang-java"> MessageProducer producer = session.createProducer(requestQueue);
+
+ TemporaryQueue replyQueue = session.createTemporaryQueue();
+
+ MessageConsumer replyConsumer = session.createConsumer(replyQueue);
+</code></pre>
+<p>Next, we create our message and send it. Before we send it, however, we set a JMS property to specify where the response should be sent. It should, of course, be sent to our temporary destination like we are expecting:</p>
+<pre><code class="lang-java"> TextMessage requestMsg = session.createTextMessage(<span class="hljs-string">&quot;A request message&quot;</span>);
+
+ requestMsg.setJMSReplyTo(replyQueue);
+
+ producer.send(requestMsg);
+</code></pre>
+<p>We should optionally try to coordinate/correlate the response when it comes back to us. We&apos;ll save the message ID or some correlation ID that we specify:</p>
+<pre><code class="lang-java"> requestMap.put(requestMsg.getJMSMessageID(), requestMsg);
+</code></pre>
+<ol>
+<li>Set up the consumer</li>
+</ol>
+<p>On the consumer side, we should consume the message like normal (either using a <code>receive</code> method or <code>onMessage</code> listener) but also check the <code>ReplyTo</code> header. We should generate a response and send that response to the destination specified in the <code>ReplyTo</code> header:</p>
+<pre><code class="lang-java"> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onMessage</span><span class="hljs-params">(<span class="hljs-keyword">final</span> Message request)</span> </span>{
+      <span class="hljs-keyword">try</span> {
+         System.out.println(<span class="hljs-string">&quot;Received request message: &quot;</span> + ((TextMessage) request).getText());
+
+         <span class="hljs-comment">// Extract the ReplyTo destination</span>
+         Destination replyDestination = request.getJMSReplyTo();
+
+         System.out.println(<span class="hljs-string">&quot;Reply to queue: &quot;</span> + replyDestination);
+
+         <span class="hljs-comment">// Create the reply message</span>
+         TextMessage replyMessage = session.createTextMessage(<span class="hljs-string">&quot;A reply message&quot;</span>);
+
+         <span class="hljs-comment">// Set the CorrelationID, using message id.</span>
+         replyMessage.setJMSCorrelationID(request.getJMSMessageID());
+
+         <span class="hljs-comment">// Send out the reply message</span>
+         replyProducer.send(replyDestination, replyMessage);
+
+         System.out.println(<span class="hljs-string">&quot;Reply sent&quot;</span>);
+      } <span class="hljs-keyword">catch</span> (JMSException e) {
+         e.printStackTrace();
+      }
+   }
+</code></pre>
+<h3 id="dead-letter-queue">Dead Letter Queue</h3>
+<p>What happens when a consumer cannot process a message? Or what happens when a transaction is rolled back? A JMS message in the AMQ7 broker will be redelivered (and possibly to other consumers) if a consumer is having trouble with it. The problem is, we cannot just redeliver for ever because it will starve other consumers and messages it that come later in the queue. To deal with this, we can send the non-consumable message to the &quot;dead letter queue&quot;. </p>
+<p>First, we&apos;ll need to configure the broker for dead-letter queue (DLQ) behavior. Let&apos;s open our <code>myfirstbroker</code> configuration file in <code>etc/broker.xml</code> and navigate to the <code>address-settings</code> location. We should see an entry similar to this:</p>
+<pre><code class="lang-xml">         <span class="hljs-tag">&lt;<span class="hljs-title">address-setting</span> <span class="hljs-attribute">match</span>=<span class="hljs-value">&quot;#&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">dead-letter-address</span>&gt;</span>DLQ<span class="hljs-tag">&lt;/<span class="hljs-title">dead-letter-address</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">expiry-address</span>&gt;</span>ExpiryQueue<span class="hljs-tag">&lt;/<span class="hljs-title">expiry-address</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">redelivery-delay</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-title">redelivery-delay</span>&gt;</span>
+            <span class="hljs-comment">&lt;!-- with -1 only the global-max-size is in use for limiting --&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">max-size-bytes</span>&gt;</span>-1<span class="hljs-tag">&lt;/<span class="hljs-title">max-size-bytes</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">message-counter-history-day-limit</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">message-counter-history-day-limit</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">address-full-policy</span>&gt;</span>PAGE<span class="hljs-tag">&lt;/<span class="hljs-title">address-full-policy</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">auto-create-queues</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">auto-create-queues</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">auto-create-addresses</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">auto-create-addresses</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">auto-create-jms-queues</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">auto-create-jms-queues</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">auto-create-jms-topics</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">auto-create-jms-topics</span>&gt;</span>
+         <span class="hljs-tag">&lt;/<span class="hljs-title">address-setting</span>&gt;</span>
+</code></pre>
+<p>This configuration sets up a &quot;dead-letter queue&quot; for &quot;#&quot; (which is all, recursive) destinations set to a value of <code>DLQ</code>. If you look in the web console, you&apos;ll see a queue named <code>DLQ</code>.</p>
+<p>By default, the max number of retries is <code>10</code> but for this lab, we want to change it to a smaller number. Let&apos;s change it to <code>3</code> by adding a configuration <code>&lt;max-delivery-attempts&gt;3&lt;/max-delivery-attempts&gt;</code> to our <code>address-settings</code>. Your config should look like this:</p>
+<pre><code class="lang-xml">         <span class="hljs-tag">&lt;<span class="hljs-title">address-setting</span> <span class="hljs-attribute">match</span>=<span class="hljs-value">&quot;#&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">dead-letter-address</span>&gt;</span>DLQ<span class="hljs-tag">&lt;/<span class="hljs-title">dead-letter-address</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">max-delivery-attempts</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-title">max-delivery-attempts</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">expiry-address</span>&gt;</span>ExpiryQueue<span class="hljs-tag">&lt;/<span class="hljs-title">expiry-address</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">redelivery-delay</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-title">redelivery-delay</span>&gt;</span>
+            <span class="hljs-comment">&lt;!-- with -1 only the global-max-size is in use for limiting --&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">max-size-bytes</span>&gt;</span>-1<span class="hljs-tag">&lt;/<span class="hljs-title">max-size-bytes</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">message-counter-history-day-limit</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">message-counter-history-day-limit</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">address-full-policy</span>&gt;</span>PAGE<span class="hljs-tag">&lt;/<span class="hljs-title">address-full-policy</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">auto-create-queues</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">auto-create-queues</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">auto-create-addresses</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">auto-create-addresses</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">auto-create-jms-queues</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">auto-create-jms-queues</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">auto-create-jms-topics</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">auto-create-jms-topics</span>&gt;</span>
+         <span class="hljs-tag">&lt;/<span class="hljs-title">address-setting</span>&gt;</span>
+</code></pre>
+<p>Now save your <code>broker.xml</code> file. If you had your broker running while you made the change, you should see the configuration auto-reload with a message similar to this in the broker logs:</p>
+<pre><code class="lang-bash"><span class="hljs-number">15</span>:<span class="hljs-number">26</span>:<span class="hljs-number">47</span>,<span class="hljs-number">336</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration ...security
+<span class="hljs-number">15</span>:<span class="hljs-number">26</span>:<span class="hljs-number">47</span>,<span class="hljs-number">339</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration ...address settings
+<span class="hljs-number">15</span>:<span class="hljs-number">26</span>:<span class="hljs-number">47</span>,<span class="hljs-number">340</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration ...diverts
+<span class="hljs-number">15</span>:<span class="hljs-number">26</span>:<span class="hljs-number">47</span>,<span class="hljs-number">340</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221056: Reloading configuration ...addresses
+<span class="hljs-number">15</span>:<span class="hljs-number">26</span>:<span class="hljs-number">47</span>,<span class="hljs-number">351</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying queue foo
+<span class="hljs-number">15</span>:<span class="hljs-number">26</span>:<span class="hljs-number">47</span>,<span class="hljs-number">352</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying queue DLQ
+<span class="hljs-number">15</span>:<span class="hljs-number">26</span>:<span class="hljs-number">47</span>,<span class="hljs-number">352</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying queue ExpiryQueue
+</code></pre>
+<p>Now, let&apos;s go to the <code>dead-letter</code> example from the examples that ship with the AMQ7 broker:</p>
+<pre><code class="lang-bash">$ <span class="hljs-built_in">cd</span> <span class="hljs-variable">$AMQ7_BASE</span>/examples/features/standard/dead-letter
+</code></pre>
+<p>The example will try to consume messages a few times and try rolling them back 3 times to force the message to the <code>DLQ</code> queue. One thing we want to change: we want to configure out example to use <code>DLQ</code> as the dead-letter queue. To do this, let&apos;s open the <code>src/main/resources/jndi.properties</code> file dn change the <code>queue.queue/deadLetterQueue</code> to be <code>DLQ</code></p>
+<p>Your file should look like this:</p>
+<pre><code class="lang-java">java.naming.factory.initial=org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory
+connectionFactory.ConnectionFactory=tcp:<span class="hljs-comment">//localhost:61616</span>
+queue.queue/exampleQueue=exampleQueue
+queue.queue/deadLetterQueue=DLQ
+</code></pre>
+<p>Let&apos;s run the example</p>
+<pre><code class="lang-bash">$ mvn verify -DnoServer=<span class="hljs-literal">true</span>
+</code></pre>
+<p>We should see output like this:</p>
+<pre><code class="lang-bash">Sent message to exampleQueue: this is a text message
+<span class="hljs-number">1</span>st delivery from exampleQueue: this is a text message
+<span class="hljs-number">2</span>nd delivery from exampleQueue: this is a text message
+<span class="hljs-number">3</span>rd delivery from exampleQueue: this is a text message
+<span class="hljs-number">4</span>th delivery from exampleQueue: null
+</code></pre>
+<p>If we check the <code>DLQ</code> queue in the web console, we can see that it now has one message in it:</p>
+<p><img src="images/produce-consume/dlq.png" alt=""></p>
+<h3 id="last-value-queue">Last Value queue</h3>
+<p>A last-value queue is a special kind of queue that keeps only the most recent message for a specific type of message (defined by a <code>Last-Value</code> property). This could be useful for stock price updates where we really only care about the most recent updates.  </p>
+<p>First, we&apos;ll need to configure the broker for last-value queue behavior for the destinations we define. We don&apos;t want all of our queues to be last-value, so we need to explicitly set up a specific queue. Let&apos;s open our <code>myfirstbroker</code> configuration file in <code>etc/broker.xml</code> and navigate to the <code>address-settings</code> location. We will add a configuration for a queue named <code>exampleQueue</code> to be a last-value queue:</p>
+<pre><code class="lang-xml">       <span class="hljs-tag">&lt;<span class="hljs-title">address-setting</span> <span class="hljs-attribute">match</span>=<span class="hljs-value">&quot;exampleQueue&quot;</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-title">last-value-queue</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">last-value-queue</span>&gt;</span>
+       <span class="hljs-tag">&lt;/<span class="hljs-title">address-setting</span>&gt;</span>
+</code></pre>
+<p>We will also add a new <code>Anycast</code> address and bind it to a queue named <code>exampleQueue</code>:</p>
+<pre><code class="lang-xml">      <span class="hljs-tag">&lt;<span class="hljs-title">address</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;exampleQueue&quot;</span>&gt;</span>&quot;
+          <span class="hljs-tag">&lt;<span class="hljs-title">anycast</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">queue</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;exampleQueue&quot;</span>/&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">anycast</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">address</span>&gt;</span>
+</code></pre>
+<p>Now, let&apos;s go to the <code>last-value-queue</code> example from the examples that ship with the AMQ7 broker:</p>
+<pre><code class="lang-bash">$ <span class="hljs-built_in">cd</span> <span class="hljs-variable">$AMQ7_BASE</span>/examples/features/standard/last-value-queue
+</code></pre>
+<p>Let&apos;s run the example</p>
+<pre><code class="lang-bash">$ mvn verify -DnoServer=<span class="hljs-literal">true</span>
+</code></pre>
+<p>We should see output like this:</p>
+<pre><code class="lang-bash">[INFO] --- artemis-maven-plugin:<span class="hljs-number">2.0</span>.<span class="hljs-number">0</span>.amq-<span class="hljs-number">700005</span>-redhat-<span class="hljs-number">1</span>:runClient (runClient) @ last-value-queue ---
+Sent message: <span class="hljs-number">1</span>st message with Last-Value property <span class="hljs-built_in">set</span>
+Sent message: <span class="hljs-number">2</span>nd message with Last-Value property <span class="hljs-built_in">set</span>
+Sent message: <span class="hljs-number">3</span>rd message with Last-Value property <span class="hljs-built_in">set</span>
+Message <span class="hljs-keyword">in</span> the queue: <span class="hljs-number">3</span>rd message with Last-Value property <span class="hljs-built_in">set</span>
+Received message: <span class="hljs-number">3</span>rd message with Last-Value property <span class="hljs-built_in">set</span>
+Received message: null
+</code></pre>
+<p>Let&apos;s take a closer look at what&apos;s going on. </p>
+<p>If you open the <code>Java</code> source file in the <code>last-value-queue</code> project  <code>src/main/java//org/apache/activemq/artemis/jms/example/LastValueQueueExample.java</code> we can see a little about how this happens.</p>
+<p>When we send messages to the <code>exampleQueue</code> queue (which was earlier configured for Last Value semantics), we are adding a JMS property named <code>_AMQ_LVQ_NAME</code> which is the field that the last-value queue implementation will match on:</p>
+<pre><code class="lang-java">         TextMessage message = session.createTextMessage(<span class="hljs-string">&quot;1st message with Last-Value property set&quot;</span>);
+         message.setStringProperty(<span class="hljs-string">&quot;_AMQ_LVQ_NAME&quot;</span>, <span class="hljs-string">&quot;STOCK_NAME&quot;</span>);
+         producer.send(message);
+</code></pre>
+<p>If the queue sees multiple messages with the same <code>_AMQ_LVQ_NAME</code> property, then it will only keep the most recent message. The example sends in three messages with the same value (<code>_AMQ_LVQ_NAME1</code> equal to <code>STOCK_NAME</code>) and tries to consume from the <code>exampleQueue</code> queue. It finds only the 3rd message sent.</p>
+<h2 id="where-to-go-from-here">Where to go from here</h2>
+<p>Check out the examples in the distro</p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./20-clients.html" class="navigation navigation-prev " aria-label="Previous page: AMQ 7 Clients"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./40-master-slave.html" class="navigation navigation-next " aria-label="Next page: Persistence / Master-Slave"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"anchors":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>AMQ 7 Clients | JBoss AMQ 7 Labs</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="./30-produce-consume.html" />
+    
+    
+    <link rel="prev" href="./10-configure-broker.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="3"
+        data-chapter-title="AMQ 7 Clients"
+        data-filepath="20-clients.md"
+        data-basepath="."
+        data-revision="Thu May 25 2017 15:44:14 GMT-0700 (MST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="00-install-broker.html">
+            
+                
+                    <a href="./00-install-broker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Installing the AMQ7 Broker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="10-configure-broker.html">
+            
+                
+                    <a href="./10-configure-broker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Configuring AMQ 7
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="3" data-path="20-clients.html">
+            
+                
+                    <a href="./20-clients.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        AMQ 7 Clients
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="30-produce-consume.html">
+            
+                
+                    <a href="./30-produce-consume.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Producing and Consuming
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="40-master-slave.html">
+            
+                
+                    <a href="./40-master-slave.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Persistence / Master-Slave
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="50-replication.html">
+            
+                
+                    <a href="./50-replication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Persistence / Replication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="60-clustering.html">
+            
+                
+                    <a href="./60-clustering.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Simple Clustering
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="70-admin.html">
+            
+                
+                    <a href="./70-admin.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Administration
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="75-security.html">
+            
+                
+                    <a href="./75-security.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Security
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="80-install-qdr.html">
+            
+                
+                    <a href="./80-install-qdr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        Installing Interconnect Router
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="90-broker-to-router.html">
+            
+                
+                    <a href="./90-broker-to-router.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        Connect router to broker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="100-brokerless.html">
+            
+                
+                    <a href="./100-brokerless.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Brokerless routing
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >JBoss AMQ 7 Labs</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="amq-7-clients">AMQ 7 Clients</h1>
+<p>AMQ 7 comes with several new clients covering a variety of protocols and programming languages. In the past, any supported clients were only released when we released new versions of the AMQ product. With AMQ7 that has changed; each client has its own lifecycle and is released independently from the AMQ broker/server components. </p>
+<p>AMQ7 includes the following supported clients:</p>
+<ul>
+<li>AMQ JMS Client (<a href="https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_the_amq_jms_client/" target="_blank">official docs</a>)</li>
+<li>AMQ C++ Client (<a href="https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_the_amq_cpp_client/" target="_blank">official docs</a>)</li>
+<li>AMQ JavaScript/NodeJS Client (<a href="https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_the_amq_javascript_client/" target="_blank">official docs</a>)</li>
+<li>AMQ Python Client (<a href="https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_the_amq_python_client/" target="_blank">official docs</a>)</li>
+<li>AMQ .NET Client (<a href="https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_the_amq_.net_client/" target="_blank">official docs</a>)</li>
+</ul>
+<p>Let&apos;s explore the clients.</p>
+<h2 id="amq-jms-client">AMQ JMS Client</h2>
+<p>To use the AMQ JMS client, navigate to <a href="https://developers.redhat.com/products/amq/download/" target="_blank">https://developers.redhat.com/products/amq/download/</a> and locate the AMQ JMS Client.</p>
+<p><img src="images/client/download-jms-client.png" alt="Download JMS"></p>
+<p>When you&apos;ve downloaded the file, copy it to a location where you&apos;d like to unzip this client.</p>
+<pre><code>$ mv ~/Downloads/apache-qpid-jms-0.21.0.redhat-1-bin.zip ./clients/
+$ cd clients
+$ unzip apache-qpid-jms-0.21.0.redhat-1-bin.zip
+$ cd apache-qpid-jms-0.21.0.redhat-1
+</code></pre><p>Now we&apos;ll explore the client. In the distribution we just unzipped, there&apos;s an <code>examples</code> folder. Navigate into it and you&apos;ll find a Java Maven project. Let&apos;s build the project:</p>
+<pre><code>$ cd examples
+$ mvn install
+</code></pre><p>If successful, you should see output like this:</p>
+<pre><code>[INFO] 
+[INFO] --- maven-install-plugin:2.5.2:install (default-install) @ qpid-jms-examples ---
+[INFO] Skipping artifact installation
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 4.063 s
+[INFO] Finished at: 2017-05-11T15:52:15-07:00
+[INFO] Final Memory: 28M/456M
+[INFO] ------------------------------------------------------------------------
+</code></pre><p>Feel free to open this project in your favorite IDE (like <a href="https://developers.redhat.com/products/devstudio/overview/" target="_blank">JBoss Developer Studio</a>). </p>
+<p>A couple of things to notice about this example:</p>
+<ul>
+<li>Our JMS ConnectionFactory and destination names are configured in the <code>src/main/resources/jndi.properties</code> file</li>
+<li>Our <code>org.apache.qpid.jms.example.HelloWorld</code> main() class bootstraps the <code>MessageConsumer</code> and <code>MessageProducer</code> used in this example</li>
+<li>We lookup the JMS connection information from JNDI as specified in our <code>jndi.properties</code> file</li>
+<li>We send one message and receive one message.</li>
+</ul>
+<p>Review the code closer to get an idea of what it&apos;s doing:</p>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-comment">// The configuration for the Qpid InitialContextFactory has been supplied in</span>
+            <span class="hljs-comment">// a jndi.properties file in the classpath, which results in it being picked</span>
+            <span class="hljs-comment">// up automatically by the InitialContext constructor.</span>
+            Context context = <span class="hljs-keyword">new</span> InitialContext();
+
+            ConnectionFactory factory = (ConnectionFactory) context.lookup(<span class="hljs-string">&quot;myFactoryLookup&quot;</span>);
+            Destination queue = (Destination) context.lookup(<span class="hljs-string">&quot;myQueueLookup&quot;</span>);
+
+            Connection connection = factory.createConnection(System.getProperty(<span class="hljs-string">&quot;USER&quot;</span>), System.getProperty(<span class="hljs-string">&quot;PASSWORD&quot;</span>));
+            connection.setExceptionListener(<span class="hljs-keyword">new</span> MyExceptionListener());
+            connection.start();
+
+            Session session = connection.createSession(<span class="hljs-keyword">false</span>, Session.AUTO_ACKNOWLEDGE);
+
+            MessageProducer messageProducer = session.createProducer(queue);
+            MessageConsumer messageConsumer = session.createConsumer(queue);
+
+            TextMessage message = session.createTextMessage(<span class="hljs-string">&quot;Hello world!&quot;</span>);
+            messageProducer.send(message, DeliveryMode.NON_PERSISTENT, Message.DEFAULT_PRIORITY, Message.DEFAULT_TIME_TO_LIVE);
+            TextMessage receivedMessage = (TextMessage) messageConsumer.receive(<span class="hljs-number">2000L</span>);
+
+            <span class="hljs-keyword">if</span> (receivedMessage != <span class="hljs-keyword">null</span>) {
+                System.out.println(receivedMessage.getText());
+            } <span class="hljs-keyword">else</span> {
+                System.out.println(<span class="hljs-string">&quot;No message received within the given timeout!&quot;</span>);
+            }
+
+            connection.close();
+        } <span class="hljs-keyword">catch</span> (Exception exp) {
+            System.out.println(<span class="hljs-string">&quot;Caught exception, exiting.&quot;</span>);
+            exp.printStackTrace(System.out);
+            System.exit(<span class="hljs-number">1</span>);
+        }
+    }
+</code></pre>
+<p>To run this example, we&apos;ll first download all of the project&apos;s dependencies:</p>
+<pre><code>$ mvn clean package dependency:copy-dependencies -DincludeScope=runtime -DskipTests
+</code></pre><p>Next, we need to make sure our broker is running. If you&apos;ve followed from the previous labs, you have a broker running with a single <code>Acceptor</code> running on port <code>61616</code>. Let&apos;s change our <code>jndi.properties</code> file to reflect this change. (if you&apos;re coming to this lab from your own installation/running instance of the AMQ7 broker, adjust the properties as needed; e.g., if you still have the dedicated AMQP <code>Acceptor</code> running, then no need to make this change). </p>
+<p>Our <code>jndi.properties</code> file should look like this, with the <code>connectionfactory.myFactoryLookup</code> property set to <code>61616</code></p>
+<p>NOTE: We need to change the connection factory URL to <code>61616</code> since our <code>acceptor</code> does not have the other ports open.</p>
+<pre><code># Set the InitialContextFactory class to use
+java.naming.factory.initial = org.apache.qpid.jms.jndi.JmsInitialContextFactory
+
+# Define the required ConnectionFactory instances
+# connectionfactory.&lt;JNDI-lookup-name&gt; = &lt;URI&gt;
+connectionfactory.myFactoryLookup = amqp://localhost:61616
+
+# Configure the necessary Queue and Topic objects
+# queue.&lt;JNDI-lookup-name&gt; = &lt;queue-name&gt;
+# topic.&lt;JNDI-lookup-name&gt; = &lt;topic-name&gt;
+queue.myQueueLookup = queue
+topic.myTopicLookup = topic
+</code></pre><p>Now let&apos;s build our project and run:</p>
+<pre><code>$ mvn clean install
+$ java -cp &quot;target/classes/:target/dependency/*&quot; org.apache.qpid.jms.example.HelloWorld
+</code></pre><p>If everything completed properly, you should see the following output:</p>
+<pre><code>Hello world!
+</code></pre><h4 id="some-things-to-note">Some things to note:</h4>
+<p>The URL we passed to the connection factory should be in the following form:</p>
+<blockquote>
+<p>amqp[s]://hostname:port[?option=value[&amp;option2=value...]]</p>
+</blockquote>
+<p>We can also use the failover URI (discussed in future lab) like this:</p>
+<blockquote>
+<p>failover:(amqp://host1:port[,amqp://host2:port...])[?option=value[&amp;option2=value...]]</p>
+</blockquote>
+<p>Options for configuration can be <a href="https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_the_amq_jms_client/configuration#connection_uri_options_jms" target="_blank">found at the AMQ7 JMS Client product documentation</a></p>
+<h2 id="amq-nodejs-client">AMQ NodeJS Client</h2>
+<p>The AMQ NodeJS client can be used to connect to the AMQ7 broker (or any compatible AMQP 1.0 broker) and can send and receive messages regardless of what clients produced them (ie, they could be MQTT IoT producers for example). </p>
+<p>To use the AMQ NodeJS client, navigate to <a href="https://developers.redhat.com/products/amq/download/" target="_blank">https://developers.redhat.com/products/amq/download/</a> and locate the AMQ NodeJS (called &quot;JavaScript&quot; in the download portal) Client.</p>
+<p><img src="images/client/download-node-client.png" alt="Download JMS"></p>
+<p>When you&apos;ve downloaded the file, copy it to a location where you&apos;d like to unzip this client.</p>
+<pre><code>$ mv ~/Downloads/nodejs-rhea-0.2.0-1.zip . ./clients/
+$ cd clients
+$ unzip nodejs-rhea-0.2.0-1.zip
+$ cd nodejs-rhea-0.2.0-1
+</code></pre><p>To run the examples, we&apos;ll need to install two dependencies:</p>
+<pre><code>$ npm install debug
+$ npm install yargs
+</code></pre><p>Now let&apos;s navigate to the <code>examples</code> folder and take a look at the application that will receive messages from the broker:</p>
+<pre><code>$ cd node_modules/rhea/examples
+</code></pre><p>Open up the <code>simple_recv.js</code> file in your favorite editor:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> args = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;yargs&apos;</span>).options({
+      <span class="hljs-string">&apos;m&apos;</span>: { alias: <span class="hljs-string">&apos;messages&apos;</span>, <span class="hljs-keyword">default</span>: <span class="hljs-number">100</span>, describe: <span class="hljs-string">&apos;number of messages to expect&apos;</span>},
+      <span class="hljs-string">&apos;n&apos;</span>: { alias: <span class="hljs-string">&apos;node&apos;</span>, <span class="hljs-keyword">default</span>: <span class="hljs-string">&apos;examples&apos;</span>, describe: <span class="hljs-string">&apos;name of node (e.g. queue) from which messages are received&apos;</span>},
+      <span class="hljs-string">&apos;p&apos;</span>: { alias: <span class="hljs-string">&apos;port&apos;</span>, <span class="hljs-keyword">default</span>: <span class="hljs-number">5672</span>, describe: <span class="hljs-string">&apos;port to connect to&apos;</span>}
+    }).help(<span class="hljs-string">&apos;help&apos;</span>).argv;
+
+<span class="hljs-keyword">var</span> received = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">var</span> expected = args.messages;
+
+container.on(<span class="hljs-string">&apos;message&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">context</span>) </span>{
+    <span class="hljs-keyword">if</span> (context.message.id &amp;&amp; context.message.id &lt; received) {
+        <span class="hljs-comment">// ignore duplicate message</span>
+        <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-keyword">if</span> (expected === <span class="hljs-number">0</span> || received &lt; expected) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(context.message.body))
+        <span class="hljs-keyword">if</span> (++received === expected) {
+            context.receiver.detach();
+            context.connection.close();
+        }
+    }
+});
+
+container.connect({<span class="hljs-string">&apos;port&apos;</span>:args.port}).open_receiver(args.node);
+</code></pre>
+<p>We see that this simple receiver application tries to connect to a broker on port <code>5672</code> by default (which is also the AMQP default port) and tries to read messages from the <code>examples</code> queue. Since we have our broker running on port <code>61616</code>, let&apos;s run our receiver and direct it to connect to our broker on the correct port:</p>
+<pre><code>$ node simple_recv.js -p 61616
+</code></pre><p>Open another window to run our sender. Navigate back to the same directory where the examples where and run:</p>
+<pre><code>$ node simple_send.js -p 61616
+</code></pre><p>Note that for the sender, we&apos;re also changing its port. Hit enter to run the sender. You should see similar output:</p>
+<p>From the receiver:</p>
+<pre><code>{&quot;sequence&quot;:1}
+. 
+.
+.
+{&quot;sequence&quot;:90}
+{&quot;sequence&quot;:91}
+{&quot;sequence&quot;:92}
+{&quot;sequence&quot;:93}
+{&quot;sequence&quot;:94}
+{&quot;sequence&quot;:95}
+{&quot;sequence&quot;:96}
+{&quot;sequence&quot;:97}
+{&quot;sequence&quot;:98}
+{&quot;sequence&quot;:99}
+{&quot;sequence&quot;:100}
+</code></pre><p>From the sender:</p>
+<pre><code>sent 1
+.
+.
+.
+sent 90
+sent 91
+sent 92
+sent 93
+sent 94
+sent 95
+sent 96
+sent 97
+sent 98
+sent 99
+sent 100
+all messages confirmed
+</code></pre><h2 id="other-clients">Other clients</h2>
+<p>You can download the other clients from the Red Hat support portal or the developers.redhat.com site. At the moment all the clients are available for download there EXCEPT the <em>Python</em> and <em>Linux C++</em> libraries (for RHEL). Those are available as RPMs through your RHEL subscription. </p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./10-configure-broker.html" class="navigation navigation-prev " aria-label="Previous page: Configuring AMQ 7"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./30-produce-consume.html" class="navigation navigation-next " aria-label="Next page: Producing and Consuming"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"anchors":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

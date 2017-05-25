@@ -1,0 +1,431 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Persistence / Replication | JBoss AMQ 7 Labs</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="./60-clustering.html" />
+    
+    
+    <link rel="prev" href="./40-master-slave.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="6"
+        data-chapter-title="Persistence / Replication"
+        data-filepath="50-replication.md"
+        data-basepath="."
+        data-revision="Thu May 25 2017 15:44:14 GMT-0700 (MST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="00-install-broker.html">
+            
+                
+                    <a href="./00-install-broker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Installing the AMQ7 Broker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="10-configure-broker.html">
+            
+                
+                    <a href="./10-configure-broker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Configuring AMQ 7
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="20-clients.html">
+            
+                
+                    <a href="./20-clients.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        AMQ 7 Clients
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="30-produce-consume.html">
+            
+                
+                    <a href="./30-produce-consume.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Producing and Consuming
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="40-master-slave.html">
+            
+                
+                    <a href="./40-master-slave.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Persistence / Master-Slave
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="6" data-path="50-replication.html">
+            
+                
+                    <a href="./50-replication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Persistence / Replication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="60-clustering.html">
+            
+                
+                    <a href="./60-clustering.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Simple Clustering
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="70-admin.html">
+            
+                
+                    <a href="./70-admin.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Administration
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="75-security.html">
+            
+                
+                    <a href="./75-security.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Security
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="80-install-qdr.html">
+            
+                
+                    <a href="./80-install-qdr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        Installing Interconnect Router
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="90-broker-to-router.html">
+            
+                
+                    <a href="./90-broker-to-router.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        Connect router to broker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="100-brokerless.html">
+            
+                
+                    <a href="./100-brokerless.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Brokerless routing
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >JBoss AMQ 7 Labs</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="amq-7-message-persistence--replication">AMQ 7 Message Persistence &amp; Replication</h1>
+<p>AMQ7 has various message persistence options:</p>
+<ul>
+<li>NIO (Java NIO, journal-based persistence)</li>
+<li>ASYNCIO (Linux Asynchronous IO, journal-based persistence)</li>
+<li>JDBC (persist to the relational database of your choice)</li>
+<li>Memory (in-memory stateless message persistence)</li>
+</ul>
+<p>The default, out-of-the-box settin is NIO file journal-based persistence.  You can configure message persistence by updating the <code>/jboss-amq-7.0.0.redhat-1/brokers/myfirstbroker/etc/broker.xml</code> file.  Here is the section in <code>broker.xml</code>:</p>
+<pre><code>&lt;configuration&gt;
+  &lt;core&gt;
+    ...
+      &lt;persistence-enabled&gt;true&lt;/persistence-enabled&gt;
+    &lt;!-- this could be ASYNCIO or NIO--&gt;
+    &lt;journal-type&gt;NIO&lt;/journal-type&gt;
+    &lt;paging-directory&gt;./data/paging&lt;/paging-directory&gt;
+    &lt;bindings-directory&gt;./data/bindings&lt;/bindings-directory&gt;
+    &lt;journal-directory&gt;./data/journal&lt;/journal-directory&gt;
+    &lt;large-messages-directory&gt;./data/large-messages&lt;/large-messages-directory&gt;
+    &lt;journal-datasync&gt;true&lt;/journal-datasync&gt;
+    &lt;journal-min-files&gt;2&lt;/journal-min-files&gt;
+    &lt;journal-pool-files&gt;-1&lt;/journal-pool-files&gt;
+    ...
+  &lt;/core&gt;
+&lt;/configuration&gt;
+</code></pre><p>For further details around message persistence, refer to the product documentation <a href="https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_amq_broker/basic_configuration#configuring_persistence" target="_blank">here</a>.</p>
+<h2 id="replication">Replication</h2>
+<p>The following lab demonstrates setting up a 2-node master / slave cluster with shared-nothing replication.</p>
+<h3 id="lab--sharednothing-replication-between-master--slave-cluster">Lab - Shared-nothing replication between Master / Slave cluster</h3>
+<h4 id="prerequisites">Prerequisites</h4>
+<p>Download the legacy ActiveMQ client JAR which supports OpenWire failover <a href="https://mvnrepository.com/artifact/org.apache.activemq/activemq-all/5.14.5" target="_blank">here</a></p>
+<ol>
+<li>Create a master and slave broker pair by running the following commands:</li>
+</ol>
+<pre><code>$ ./bin/artemis create brokers/master
+$ ./bin/artemis create brokers/slave --port-offset 1
+</code></pre><p>Be sure to give each broker the <code>admin/admin</code> username / password combo and allow anonymous access.</p>
+<ol>
+<li>Replace the etc/broker.xml file from the examples directory for both master and slave:</li>
+</ol>
+<pre><code>cp /jboss-amq-7.0.0.redhat-1/examples/features/clustered/clustered-static-discovery/src/main/resources/activemq/server0/broker.xml /brokers/master/etc/broker.xml
+cp /jboss-amq-7.0.0.redhat-1/examples/features/clustered/clustered-static-discovery/src/main/resources/activemq/server1/broker.xml /brokers/slave/etc/broker.xml
+</code></pre><ol>
+<li>Replace the security-settings section of both master / slave broker.xml files with the following text (this will allow the producer / consumer to dynamically create queues):</li>
+</ol>
+<pre><code>      &lt;security-settings&gt;
+         &lt;security-setting match=&quot;#&quot;&gt;
+            &lt;permission type=&quot;createNonDurableQueue&quot; roles=&quot;amq&quot;/&gt;
+            &lt;permission type=&quot;deleteNonDurableQueue&quot; roles=&quot;amq&quot;/&gt;
+            &lt;permission type=&quot;createDurableQueue&quot; roles=&quot;amq&quot;/&gt;
+            &lt;permission type=&quot;deleteDurableQueue&quot; roles=&quot;amq&quot;/&gt;
+            &lt;permission type=&quot;createAddress&quot; roles=&quot;amq&quot;/&gt;
+            &lt;permission type=&quot;deleteAddress&quot; roles=&quot;amq&quot;/&gt;
+            &lt;permission type=&quot;consume&quot; roles=&quot;amq&quot;/&gt;
+            &lt;permission type=&quot;browse&quot; roles=&quot;amq&quot;/&gt;
+            &lt;permission type=&quot;send&quot; roles=&quot;amq&quot;/&gt;
+            &lt;!-- we need this otherwise ./artemis data imp wouldn&apos;t work --&gt;
+            &lt;permission type=&quot;manage&quot; roles=&quot;amq&quot;/&gt;
+         &lt;/security-setting&gt;
+      &lt;/security-settings&gt;
+</code></pre><ol>
+<li>Update the cluster-connection section by replacing the message-load-balacing line with the following:</li>
+</ol>
+<pre><code>&lt;message-load-balancing&gt;ON_DEMAND&lt;/message-load-balancing&gt;
+</code></pre><p>This will prevent message starvation and enable message redistribution between nodes, as described <a href="https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_amq_broker/clustering#enabling_message_redistribution" target="_blank">here</a></p>
+<ol>
+<li>Startup both the master and slave brokers in separate consoles</li>
+</ol>
+<pre><code>./brokers/master/bin/artemis run
+./brokers/slave/bin/artemis run
+</code></pre><ol>
+<li>Using the legacy activemq client, run the following commands in two separate console windows:</li>
+</ol>
+<pre><code>java -jar activemq-all-5.11.0.redhat-630187.jar consumer --brokerUrl &apos;failover:(tcp://localhost:61616,tcp://localhost:61617)&apos; --user admin --password admin --destination queue://TEST
+
+java -jar activemq-all-5.11.0.redhat-630187.jar producer --sleep 100 --messageCount 1000 --user admin --password admin --brokerUrl &apos;failover:(tcp://localhost:61616,tcp://localhost:61617)&apos; &#x2014;destination queue://TEST
+</code></pre><ol>
+<li><p>Kill the master broker, and observe failover of both consumer / producer processes to the slave broker</p>
+</li>
+<li><p>Startup the original master broker again.  Kill the slave broker, and notice failover back to the original master.</p>
+</li>
+</ol>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./40-master-slave.html" class="navigation navigation-prev " aria-label="Previous page: Persistence / Master-Slave"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./60-clustering.html" class="navigation navigation-next " aria-label="Next page: Simple Clustering"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"anchors":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

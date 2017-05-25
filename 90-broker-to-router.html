@@ -1,0 +1,489 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Connect router to broker | JBoss AMQ 7 Labs</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="./100-brokerless.html" />
+    
+    
+    <link rel="prev" href="./80-install-qdr.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="11"
+        data-chapter-title="Connect router to broker"
+        data-filepath="90-broker-to-router.md"
+        data-basepath="."
+        data-revision="Thu May 25 2017 15:44:14 GMT-0700 (MST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="00-install-broker.html">
+            
+                
+                    <a href="./00-install-broker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Installing the AMQ7 Broker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="10-configure-broker.html">
+            
+                
+                    <a href="./10-configure-broker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Configuring AMQ 7
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="20-clients.html">
+            
+                
+                    <a href="./20-clients.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        AMQ 7 Clients
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="30-produce-consume.html">
+            
+                
+                    <a href="./30-produce-consume.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Producing and Consuming
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="40-master-slave.html">
+            
+                
+                    <a href="./40-master-slave.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Persistence / Master-Slave
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="50-replication.html">
+            
+                
+                    <a href="./50-replication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Persistence / Replication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="60-clustering.html">
+            
+                
+                    <a href="./60-clustering.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Simple Clustering
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="70-admin.html">
+            
+                
+                    <a href="./70-admin.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Administration
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="75-security.html">
+            
+                
+                    <a href="./75-security.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Security
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="80-install-qdr.html">
+            
+                
+                    <a href="./80-install-qdr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        Installing Interconnect Router
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="11" data-path="90-broker-to-router.html">
+            
+                
+                    <a href="./90-broker-to-router.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        Connect router to broker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="100-brokerless.html">
+            
+                
+                    <a href="./100-brokerless.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Brokerless routing
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >JBoss AMQ 7 Labs</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="connecting-the-interconnect-router-to-an-amq7-broker">Connecting the Interconnect Router to an AMQ7 Broker</h1>
+<p>In this lab we&apos;ll take a look at configuring the Interconnect Router to route messages to and from an AMQ7 broker. Clients can talk directly to the router and think they&apos;re talking to a broker.</p>
+<p>In this lab, we&apos;ll use the Docker images from the <a href="80-install-qdr.html">installing interconnect router</a> lab. You can use the same configuration files that we&apos;ll use here in your full version of RHEL/CentOS if you&apos;ve installed Interconnect Router there. The broker we&apos;ll use comes from the earlier labs; it will be running locally on your laptop. Remember, you&apos;ll need to configure port forwarding between your docker guest VM and your developer host machine.</p>
+<p>First thing we&apos;ll do is look at and modify the configuration where needed. If you look in the lab files <a href="qdr/conf">for the Interconnect Router configurations</a>, you&apos;ll see a configuration file named <code>router-to-broker.conf</code> that looks like this:</p>
+<pre><code class="lang-xml">router {
+  mode: standalone
+  id: routerToBroker
+  workerThreads: 4
+}
+
+listener {
+  role: normal
+  host: 0.0.0.0
+  port: 5672
+  linkCapacity: 1000
+}
+
+log {
+  module: DEFAULT
+  enable: trace+
+  timestamp: true
+}
+
+address {
+  prefix: foo
+  waypoint: yes
+}
+
+autoLink {
+  addr: foo
+  dir: in
+  connection: myfirstbrokerConnector
+}
+
+autoLink {
+  addr: foo
+  dir: out
+  connection: myfirstbrokerConnector
+}
+
+connector {
+  host: 10.0.1.35
+  name: myfirstbrokerConnector
+  port: 61616
+  role: route-container
+  allowRedirect: no
+}
+</code></pre>
+<p>In this configuration, we&apos;re setting up a <code>listener</code> which listens for incoming connections to the router; for example, an AMQP client could connect directly to this listener (in this case, we&apos;re listening on port <code>5672</code> which is the default AMQP port). Also locate the <code>connector</code> section of the configuration. This describes how we&apos;ll connect to the AMQ7 broker. You&apos;ll want to change the host/port config to match that of your broker. For example, if you&apos;re running the broker on your local machine and the router in a docker container locally on a guest OS, you&apos;d want to use your host IP for the broker&apos;s <code>connector.host</code> field.</p>
+<p>Let&apos;s make sure our broker from Lab 1, <code>myfirstbroker</code> is up and running:</p>
+<pre><code class="lang-bash">           __  __  ____    ____            _
+     /\   |  \/  |/ __ \  |  _ \          | |
+    /  \  | \  / | |  | | | |_) |_ __ ___ | | _____ _ __
+   / /\ \ | |\/| | |  | | |  _ &lt;| <span class="hljs-string">&apos;__/ _ \| |/ / _ \ &apos;</span>__|
+  / ____ \| |  | | |__| | | |_) | | | (_) |   &lt;  __/ |
+ /_/    \_\_|  |_|\___\_\ |____/|_|  \___/|_|\_\___|_|
+
+ Red Hat JBoss AMQ <span class="hljs-number">7.0</span>.<span class="hljs-number">0</span>.redhat-<span class="hljs-number">1</span>
+
+
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">46</span>,<span class="hljs-number">451</span> INFO  [org.apache.activemq.artemis.integration.bootstrap] AMQ101000: Starting ActiveMQ Artemis Server
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">46</span>,<span class="hljs-number">467</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221000: live Message Broker is starting with configuration Broker Configuration (clustered=<span class="hljs-literal">false</span>,journalDirectory=./data/journal,bindingsDirectory=./data/bindings,largeMessagesDirectory=./data/large-messages,pagingDirectory=./data/paging)
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">46</span>,<span class="hljs-number">512</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221013: Using NIO Journal
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">46</span>,<span class="hljs-number">611</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-server]. Adding protocol support <span class="hljs-keyword">for</span>: CORE
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">46</span>,<span class="hljs-number">612</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-amqp-protocol]. Adding protocol support <span class="hljs-keyword">for</span>: AMQP
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">46</span>,<span class="hljs-number">612</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-hornetq-protocol]. Adding protocol support <span class="hljs-keyword">for</span>: HORNETQ
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">46</span>,<span class="hljs-number">612</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-mqtt-protocol]. Adding protocol support <span class="hljs-keyword">for</span>: MQTT
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">46</span>,<span class="hljs-number">613</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-openwire-protocol]. Adding protocol support <span class="hljs-keyword">for</span>: OPENWIRE
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">46</span>,<span class="hljs-number">613</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221043: Protocol module found: [artemis-stomp-protocol]. Adding protocol support <span class="hljs-keyword">for</span>: STOMP
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">46</span>,<span class="hljs-number">658</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221034: Waiting indefinitely to obtain live lock
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">46</span>,<span class="hljs-number">658</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221035: Live Server Obtained live lock
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">47</span>,<span class="hljs-number">152</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying queue exampleQueue
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">47</span>,<span class="hljs-number">153</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying queue foo
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">47</span>,<span class="hljs-number">153</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying queue DLQ
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">47</span>,<span class="hljs-number">154</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221003: Deploying queue ExpiryQueue
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">47</span>,<span class="hljs-number">858</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221020: Started NIO Acceptor at <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>:<span class="hljs-number">61616</span> <span class="hljs-keyword">for</span> protocols [CORE,MQTT,AMQP,STOMP,HORNETQ,OPENWIRE]
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">47</span>,<span class="hljs-number">860</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221007: Server is now live
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">47</span>,<span class="hljs-number">860</span> INFO  [org.apache.activemq.artemis.core.server] AMQ221001: Apache ActiveMQ Artemis Message Broker version <span class="hljs-number">2.0</span>.<span class="hljs-number">0</span>.amq-<span class="hljs-number">700005</span>-redhat-<span class="hljs-number">1</span> [<span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>, nodeID=ae7bf278-<span class="hljs-number">35</span>c4-<span class="hljs-number">11</span>e7-<span class="hljs-number">97</span>d9-<span class="hljs-number">0</span>a0027000001] 
+INFO  | main | Initialized artemis-plugin plugin
+INFO  | main | Initialized dispatch-hawtio-console plugin
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">50</span>,<span class="hljs-number">441</span> INFO  [org.apache.activemq.artemis] AMQ241001: HTTP Server started at http://localhost:<span class="hljs-number">8161</span>
+<span class="hljs-number">09</span>:<span class="hljs-number">42</span>:<span class="hljs-number">50</span>,<span class="hljs-number">441</span> INFO  [org.apache.activemq.artemis] AMQ241002: Artemis Jolokia REST API available at http://localhost:<span class="hljs-number">8161</span>/jolokia
+</code></pre>
+<p>Now let&apos;s try running the Interconnect Router with the above configuration (ie, change the <code>connector</code> host IP and port to match your settings):</p>
+<pre><code class="lang-bash">docker run -it --rm --name qdr -p <span class="hljs-number">5672</span>:<span class="hljs-number">5672</span> -v $(<span class="hljs-built_in">pwd</span>)/qdr/conf/router-to-broker.conf:/etc/qpid-dispatch/qdrouterd.conf ceposta/qdr
+</code></pre>
+<p>Note how we map the configuration file into the docker container. When we run this, we should see output from the Interconnect Router similar to this:</p>
+<pre><code class="lang-bash">Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) Connecting to <span class="hljs-number">10.0</span>.<span class="hljs-number">1.35</span>:<span class="hljs-number">61616</span>
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:  -&gt; SASL
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:  &lt;- SASL
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:<span class="hljs-number">0</span> &lt;- @sasl-mechanisms(<span class="hljs-number">64</span>) [sasl-server-mechanisms=@PN_SYMBOL[:PLAIN, :ANONYMOUS]]
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:<span class="hljs-number">0</span> -&gt; @sasl-init(<span class="hljs-number">65</span>) [mechanism=:ANONYMOUS, initial-response=b<span class="hljs-string">&quot;anonymous@0993bdacc124&quot;</span>]
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:<span class="hljs-number">0</span> &lt;- @sasl-outcome(<span class="hljs-number">68</span>) [code=<span class="hljs-number">0</span>]
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:  &lt;- AMQP
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:  -&gt; AMQP
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:<span class="hljs-number">0</span> -&gt; @open(<span class="hljs-number">16</span>) [container-id=<span class="hljs-string">&quot;routerToBroker&quot;</span>, hostname=<span class="hljs-string">&quot;10.0.1.35&quot;</span>, max-frame-size=<span class="hljs-number">16384</span>, channel-max=<span class="hljs-number">32767</span>, idle-time-out=<span class="hljs-number">8000</span>, offered-capabilities=:<span class="hljs-string">&quot;ANONYMOUS-RELAY&quot;</span>, properties={:product=<span class="hljs-string">&quot;qpid-dispatch-router&quot;</span>, :version=<span class="hljs-string">&quot;0.8.0&quot;</span>}]
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:<span class="hljs-number">0</span> &lt;- @open(<span class="hljs-number">16</span>) [container-id=<span class="hljs-string">&quot;0.0.0.0&quot;</span>, max-frame-size=<span class="hljs-number">4294967295</span>, channel-max=<span class="hljs-number">65535</span>, idle-time-out=<span class="hljs-number">30000</span>, offered-capabilities=@PN_SYMBOL[:<span class="hljs-string">&quot;sole-connection-for-container&quot;</span>, :<span class="hljs-string">&quot;DELAYED_DELIVERY&quot;</span>, :<span class="hljs-string">&quot;SHARED-SUBS&quot;</span>, :<span class="hljs-string">&quot;ANONYMOUS-RELAY&quot;</span>], properties={:product=<span class="hljs-string">&quot;apache-activemq-artemis&quot;</span>, :version=<span class="hljs-string">&quot;2.0.0.amq-700005-redhat-1&quot;</span>}]
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> ROUTER_CORE (trace) Core action <span class="hljs-string">&apos;connection_opened&apos;</span>
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> ROUTER_CORE (info) Auto Link Activated <span class="hljs-string">&apos;autoLink/0&apos;</span> on connection myfirstbrokerConnector
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> ROUTER_CORE (info) Auto Link Activated <span class="hljs-string">&apos;autoLink/1&apos;</span> on connection myfirstbrokerConnector
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:<span class="hljs-number">0</span> -&gt; @begin(<span class="hljs-number">17</span>) [next-outgoing-id=<span class="hljs-number">0</span>, incoming-window=<span class="hljs-number">2147483647</span>, outgoing-window=<span class="hljs-number">2147483647</span>]
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:<span class="hljs-number">1</span> -&gt; @begin(<span class="hljs-number">17</span>) [next-outgoing-id=<span class="hljs-number">0</span>, incoming-window=<span class="hljs-number">2147483647</span>, outgoing-window=<span class="hljs-number">2147483647</span>]
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:<span class="hljs-number">0</span> -&gt; @attach(<span class="hljs-number">18</span>) [name=<span class="hljs-string">&quot;qdlink.nxYIQdO8Jvut7LX&quot;</span>, handle=<span class="hljs-number">0</span>, role=<span class="hljs-literal">true</span>, snd-settle-mode=<span class="hljs-number">2</span>, rcv-settle-mode=<span class="hljs-number">0</span>, <span class="hljs-built_in">source</span>=@<span class="hljs-built_in">source</span>(<span class="hljs-number">40</span>) [address=<span class="hljs-string">&quot;foo&quot;</span>, durable=<span class="hljs-number">0</span>, expiry-policy=:<span class="hljs-string">&quot;link-detach&quot;</span>, timeout=<span class="hljs-number">0</span>, dynamic=<span class="hljs-literal">false</span>], target=@target(<span class="hljs-number">41</span>) [durable=<span class="hljs-number">0</span>, timeout=<span class="hljs-number">0</span>, dynamic=<span class="hljs-literal">false</span>], initial-delivery-count=<span class="hljs-number">0</span>, max-message-size=<span class="hljs-number">0</span>]
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:<span class="hljs-number">1</span> -&gt; @attach(<span class="hljs-number">18</span>) [name=<span class="hljs-string">&quot;qdlink.NqqnFJ7_SOW_EWu&quot;</span>, handle=<span class="hljs-number">0</span>, role=<span class="hljs-literal">false</span>, snd-settle-mode=<span class="hljs-number">2</span>, rcv-settle-mode=<span class="hljs-number">0</span>, <span class="hljs-built_in">source</span>=@<span class="hljs-built_in">source</span>(<span class="hljs-number">40</span>) [durable=<span class="hljs-number">0</span>, timeout=<span class="hljs-number">0</span>, dynamic=<span class="hljs-literal">false</span>], target=@target(<span class="hljs-number">41</span>) [address=<span class="hljs-string">&quot;foo&quot;</span>, durable=<span class="hljs-number">0</span>, expiry-policy=:<span class="hljs-string">&quot;link-detach&quot;</span>, timeout=<span class="hljs-number">0</span>, dynamic=<span class="hljs-literal">false</span>], initial-delivery-count=<span class="hljs-number">0</span>, max-message-size=<span class="hljs-number">0</span>]
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:<span class="hljs-number">0</span> &lt;- @begin(<span class="hljs-number">17</span>) [remote-channel=<span class="hljs-number">0</span>, next-outgoing-id=<span class="hljs-number">1</span>, incoming-window=<span class="hljs-number">2147483647</span>, outgoing-window=<span class="hljs-number">2147483647</span>, handle-max=<span class="hljs-number">65535</span>]
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:<span class="hljs-number">1</span> &lt;- @begin(<span class="hljs-number">17</span>) [remote-channel=<span class="hljs-number">1</span>, next-outgoing-id=<span class="hljs-number">1</span>, incoming-window=<span class="hljs-number">2147483647</span>, outgoing-window=<span class="hljs-number">2147483647</span>, handle-max=<span class="hljs-number">65535</span>]
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:<span class="hljs-number">0</span> &lt;- @attach(<span class="hljs-number">18</span>) [name=<span class="hljs-string">&quot;qdlink.nxYIQdO8Jvut7LX&quot;</span>, handle=<span class="hljs-number">0</span>, role=<span class="hljs-literal">false</span>, snd-settle-mode=<span class="hljs-number">2</span>, rcv-settle-mode=<span class="hljs-number">0</span>, <span class="hljs-built_in">source</span>=@<span class="hljs-built_in">source</span>(<span class="hljs-number">40</span>) [address=<span class="hljs-string">&quot;foo&quot;</span>, durable=<span class="hljs-number">0</span>, expiry-policy=:<span class="hljs-string">&quot;link-detach&quot;</span>], target=@target(<span class="hljs-number">41</span>) [], incomplete-unsettled=<span class="hljs-literal">false</span>, initial-delivery-count=<span class="hljs-number">0</span>]
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:<span class="hljs-number">1</span> &lt;- @attach(<span class="hljs-number">18</span>) [name=<span class="hljs-string">&quot;qdlink.NqqnFJ7_SOW_EWu&quot;</span>, handle=<span class="hljs-number">0</span>, role=<span class="hljs-literal">true</span>, snd-settle-mode=<span class="hljs-number">2</span>, rcv-settle-mode=<span class="hljs-number">0</span>, <span class="hljs-built_in">source</span>=@<span class="hljs-built_in">source</span>(<span class="hljs-number">40</span>) [], target=@target(<span class="hljs-number">41</span>) [address=<span class="hljs-string">&quot;foo&quot;</span>, durable=<span class="hljs-number">0</span>, expiry-policy=:<span class="hljs-string">&quot;link-detach&quot;</span>]]
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> SERVER (trace) [<span class="hljs-number">1</span>]:<span class="hljs-number">1</span> &lt;- @flow(<span class="hljs-number">19</span>) [next-incoming-id=<span class="hljs-number">0</span>, incoming-window=<span class="hljs-number">2147483647</span>, next-outgoing-id=<span class="hljs-number">1</span>, outgoing-window=<span class="hljs-number">2147483647</span>, handle=<span class="hljs-number">0</span>, delivery-count=<span class="hljs-number">0</span>, link-credit=<span class="hljs-number">1000</span>]
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> ROUTER_CORE (trace) Core action <span class="hljs-string">&apos;link_second_attach&apos;</span>
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> ROUTER_CORE (trace) Core action <span class="hljs-string">&apos;link_second_attach&apos;</span>
+Thu May <span class="hljs-number">25</span> <span class="hljs-number">09</span>:<span class="hljs-number">46</span>:<span class="hljs-number">19</span> <span class="hljs-number">2017</span> ROUTER_CORE (trace) Core action <span class="hljs-string">&apos;link_flow&apos;</span>
+</code></pre>
+<p>Fire up the web console for the broker at <a href="http://localhost:8161/hawtio" target="_blank">http://localhost:8161/hawtio</a> and try to find the <code>address.hellowrold</code> destination. </p>
+<p><img src="images/broker-to-router/helloworldaddress.png" alt=""></p>
+<p>As we send messages in to the router, you should watch the <code>foo</code> queue and see its message count increase.</p>
+<h3 id="sending-messages-into-the-router">Sending messages into the Router</h3>
+<p>To send messages into the router, we&apos;ll go <a href="20-clients.html">back to the JMS AMQP client in the Clients Lab</a> and configure it to send messages to the <code>5672</code> port (which is the default AMQP port:</p>
+<p> Our <code>jndi.properties</code> file should look like this, with the <code>connectionfactory.myFactoryLookup</code> property set to <code>5672</code></p>
+<pre><code> # Set the InitialContextFactory class to use
+ java.naming.factory.initial = org.apache.qpid.jms.jndi.JmsInitialContextFactory
+
+ # Define the required ConnectionFactory instances
+ # connectionfactory.&lt;JNDI-lookup-name&gt; = &lt;URI&gt;
+ connectionfactory.myFactoryLookup = amqp://localhost:5672
+
+ # Configure the necessary Queue and Topic objects
+ # queue.&lt;JNDI-lookup-name&gt; = &lt;queue-name&gt;
+ # topic.&lt;JNDI-lookup-name&gt; = &lt;topic-name&gt;
+ queue.myQueueLookup = queue
+ topic.myTopicLookup = topic
+</code></pre><p>The last thing we need to do is port-forward the guest OS to our host OS. If you recall, when we started the docker container for our router, we passed in the <code>-p 5672:5672</code> flag which exposes the <code>5672</code> port on the docker container to the host. Except, since the docker daemon is running in our guest VM, it cannot be seen on the host. </p>
+<p>If using minikube, do this achieve the port forwarding:</p>
+<pre><code class="lang-bash">minikube ssh -- -vnNTL *:<span class="hljs-number">5672</span>:$(minikube ip):<span class="hljs-number">5672</span>
+</code></pre>
+<p>Now run your JMS client:</p>
+<pre><code class="lang-bash">java -cp <span class="hljs-string">&quot;target/classes/:target/dependency/*&quot;</span> org.apache.qpid.jms.example.HelloWorld
+Hello world!
+</code></pre>
+<p>If we see the <code>Hello world!</code> response, it means our message went to the router, into the broker, and back out that way to the JMS consumer as we expected! </p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./80-install-qdr.html" class="navigation navigation-prev " aria-label="Previous page: Installing Interconnect Router"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./100-brokerless.html" class="navigation navigation-next " aria-label="Next page: Brokerless routing"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"anchors":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

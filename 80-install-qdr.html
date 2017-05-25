@@ -1,0 +1,383 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Installing Interconnect Router | JBoss AMQ 7 Labs</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.7">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="./90-broker-to-router.html" />
+    
+    
+    <link rel="prev" href="./75-security.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="10"
+        data-chapter-title="Installing Interconnect Router"
+        data-filepath="80-install-qdr.md"
+        data-basepath="."
+        data-revision="Thu May 25 2017 15:44:14 GMT-0700 (MST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="./index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="00-install-broker.html">
+            
+                
+                    <a href="./00-install-broker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Installing the AMQ7 Broker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="10-configure-broker.html">
+            
+                
+                    <a href="./10-configure-broker.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Configuring AMQ 7
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="20-clients.html">
+            
+                
+                    <a href="./20-clients.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        AMQ 7 Clients
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="30-produce-consume.html">
+            
+                
+                    <a href="./30-produce-consume.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Producing and Consuming
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="40-master-slave.html">
+            
+                
+                    <a href="./40-master-slave.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Persistence / Master-Slave
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="50-replication.html">
+            
+                
+                    <a href="./50-replication.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Persistence / Replication
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="60-clustering.html">
+            
+                
+                    <a href="./60-clustering.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Simple Clustering
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="70-admin.html">
+            
+                
+                    <a href="./70-admin.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Administration
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="75-security.html">
+            
+                
+                    <a href="./75-security.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Security
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="10" data-path="80-install-qdr.html">
+            
+                
+                    <a href="./80-install-qdr.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        Installing Interconnect Router
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="90-broker-to-router.html">
+            
+                
+                    <a href="./90-broker-to-router.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        Connect router to broker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12" data-path="100-brokerless.html">
+            
+                
+                    <a href="./100-brokerless.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Brokerless routing
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >JBoss AMQ 7 Labs</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="installing-and-configuring-amq7-interconnect-router">Installing and Configuring AMQ7 Interconnect Router</h1>
+<p>The AMQ7 Interconnect Router components are written in native code (C++) and are supported on RHEL. In this lab, we&apos;ll take a look at two ways to bootstrap Interconnect Router for the purposes of demonstrating routing and broker to router connectivity. If you&apos;re looking to do an installation of Interconnect Router on your machines (ie, not just for following this lab), then the official documentation is quite good. <a href="https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_amq_interconnect/installation" target="_blank">Check it out at access.redhat.com</a> for doing a proper installation.</p>
+<h3 id="option-1-install-into-a-fresh-copy-of-rhel-7">Option 1 Install into a fresh copy of RHEL 7</h3>
+<p>Option one requires you to have a RHEL host already provisioned. Either you can use one you already have, or for the purposes of this lab you can install a developer copy. If you go to <a href="http://developers.redhat.com" target="_blank">http://developers.redhat.com</a>, you&apos;ll notice lots of helpful tools for developers including e-books, cheatsheets, and community software. Go to the <a href="https://developers.redhat.com/products/rhel/overview/" target="_blank">Red Hat Enterprise Linux</a> landing page and click &quot;Download&quot; to get yourself a free, developers edition of RHEL. From there you can install it as a *.iso (ie, so you can import it into virtualbox or something)</p>
+<p>If you&apos;re using the developers.redhat.com developer&apos;s copy of RHEL, you should automatically have a subscription to the right repos/channels to download and install Interconnect Router.</p>
+<p>You should be able to:</p>
+<pre><code class="lang-bash">sudo yum install qpid-proton-c python-qpid-proton
+sudo yum install qpid-dispatch-router qpid-dispatch-tools
+</code></pre>
+<p>If you&apos;ve got your own RHEL 7 instance or you cannot install based on the above commands, we&apos;ll try to manually install. The binaries can be given out during in-person workshops.</p>
+<p>Once you&apos;ve got RHEL set up, you can then install the Interconnect Router. First <a href="">Download a RHEL7 build of the Interconnect Router</a> onto your RHEL machine (again, these binaries would be given out in person) </p>
+<p>Known to work on base RHEL7.x/Centos7.x distros:</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># Enable EPEL</span>
+sudo rpm -i https://dl.fedoraproject.org/pub/epel/epel-release-latest-<span class="hljs-number">7</span>.noarch.rpm
+
+<span class="hljs-comment"># Yum update</span>
+sudo yum -y update
+
+<span class="hljs-comment"># Install preprequisites</span>
+sudo yum -y install qpid-proton-c-devel python-qpid-proton
+
+<span class="hljs-comment"># Install Official release of router</span>
+sudo rpm -Uvh libwebsockets-<span class="hljs-number">2.1</span>.<span class="hljs-number">0</span>-<span class="hljs-number">3</span>.el7.x86_64.rpm
+sudo rpm -Uvh qpid-dispatch-router-<span class="hljs-number">0.8</span>.<span class="hljs-number">0</span>-<span class="hljs-number">9</span>.el7.x86_64.rpm
+</code></pre>
+<h3 id="option-2-using-docker">Option 2 Using Docker</h3>
+<p>With option 2, you can choose to use Docker and grab docker images. Note you&apos;ll need some kind of Linux machine (or VM) if your Host machine isn&apos;t Linux. This could be Docker for Mac/Windows, Minikube, or the Red Hat CDK 3.0. In any event, setting up Linux for Docker usage is beyond the scope of this installation documentation. Also, when doing any kind of port forwarding between the docker guest VM and your local workstation host, it&apos;s up to you to figure out how to open up the ports if you&apos;re trying to communicate locally with it. </p>
+<p>To get the docker image that contains the AMQ7 Interconnect Router: </p>
+<pre><code class="lang-bash">docker pull ceposta/qdr:latest
+</code></pre>
+<p>You can run the image like this:</p>
+<pre><code class="lang-bash">docker run -itd --name qdr ceposta/qdr:latest
+</code></pre>
+<p>In the next labs, we&apos;ll see how to attach configuration to the router. Default configuration is in <code>/etc/qpid-dispatch/qdrouterd.conf</code></p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./75-security.html" class="navigation navigation-prev " aria-label="Previous page: Security"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./90-broker-to-router.html" class="navigation navigation-next " aria-label="Next page: Connect router to broker"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="gitbook/app.js"></script>
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"anchors":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

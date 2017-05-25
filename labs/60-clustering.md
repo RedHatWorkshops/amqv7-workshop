@@ -4,9 +4,9 @@ A-MQ 7 has the ability intelligently store & forward messages around a cluster o
 
 There are a few different options for configuring a clustered setup:
 
-  * Multicast
-  * JGroups
-  * Static
+* Multicast
+* JGroups
+* Static
 
 For the purposes of this lab, we will use the static option. You can refer to the product documentation [here](https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_amq_broker/clustering) for more information on the other types.
 
@@ -27,71 +27,73 @@ _Note: We could have passed in some extra arguments to configure our cluster wit
 
 __Node 1__
 
-  1. Open up the `brokers/node1/etc/broker.xml` file in your favorite text editor.
-  1. Add the following elements anywhere under the `<core>` element:
+1. Open up the `brokers/node1/etc/broker.xml` file in your favorite text editor.
 
-    ```xml
-    <connectors>
-      <connector name="node1-connector">tcp://localhost:61616</connector>
-      <connector name="node2-connector">tcp://localhost:61617</connector>
-    </connectors>
+2. Add the following elements anywhere under the `<core>` element:
 
-    <cluster-connections>
-      <cluster-connection name="static-cluster">
-        <connector-ref>node1-connector</connector-ref>
-        <message-load-balancing>ON_DEMAND</message-load-balancing>
-        <static-connectors>
-          <connector-ref>node2-connector</connector-ref>
-        </static-connectors>
-      </cluster-connection>
-    </cluster-connections>
-    ```
+```xml
+<connectors>
+  <connector name="node1-connector">tcp://localhost:61616</connector>
+  <connector name="node2-connector">tcp://localhost:61617</connector>
+</connectors>
 
-  1. Add the following elements anywhere under the `<address-setting>` element whose `match` attribute is equal to "#" (meaning it matches all addresses):
+<cluster-connections>
+  <cluster-connection name="static-cluster">
+    <connector-ref>node1-connector</connector-ref>
+    <message-load-balancing>ON_DEMAND</message-load-balancing>
+    <static-connectors>
+      <connector-ref>node2-connector</connector-ref>
+    </static-connectors>
+  </cluster-connection>
+</cluster-connections>
+```
 
-    ```xml
-    <redistribution-delay>0</redistribution-delay>
-    ```
+3. Add the following elements anywhere under the `<address-setting>` element whose `match` attribute is equal to "#" (meaning it matches all addresses):
 
-  1. Start the broker:
+```xml
+<redistribution-delay>0</redistribution-delay>
+```
 
-    ```
-    $ ./brokers/node1/bin/artemis run
-    ```
+4. Start the broker:
+
+```
+$ ./brokers/node1/bin/artemis run
+```
 
 __Node 2__
 
-  1. Open up the `brokers/node2/etc/broker.xml` file in your favorite text editor.
-  1. Add the following elements anywhere under the `<core>` element:
+1. Open up the `brokers/node2/etc/broker.xml` file in your favorite text editor.
 
-    ```xml
-    <connectors>
-      <connector name="node1-connector">tcp://localhost:61616</connector>
-      <connector name="node2-connector">tcp://localhost:61617</connector>
-    </connectors>
+2. Add the following elements anywhere under the `<core>` element:
 
-    <cluster-connections>
-      <cluster-connection name="static-cluster">
-        <connector-ref>node2-connector</connector-ref>
-        <message-load-balancing>ON_DEMAND</message-load-balancing>
-        <static-connectors>
-          <connector-ref>node1-connector</connector-ref>
-        </static-connectors>
-      </cluster-connection>
-    </cluster-connections>
-    ```
+```xml
+<connectors>
+  <connector name="node1-connector">tcp://localhost:61616</connector>
+  <connector name="node2-connector">tcp://localhost:61617</connector>
+</connectors>
 
-  1. Add the following elements anywhere under the `<address-setting>` element whose `match` attribute is equal to "#" (meaning it matches all addresses):
+<cluster-connections>
+  <cluster-connection name="static-cluster">
+    <connector-ref>node2-connector</connector-ref>
+    <message-load-balancing>ON_DEMAND</message-load-balancing>
+    <static-connectors>
+      <connector-ref>node1-connector</connector-ref>
+    </static-connectors>
+  </cluster-connection>
+</cluster-connections>
+```
 
-    ```xml
-    <redistribution-delay>0</redistribution-delay>
-    ```
+3. Add the following elements anywhere under the `<address-setting>` element whose `match` attribute is equal to "#" (meaning it matches all addresses):
 
-  1. Start the broker:
+```xml
+<redistribution-delay>0</redistribution-delay>
+```
 
-    ```
-    $ ./brokers/node2/bin/artemis run
-    ```
+4. Start the broker:
+
+```
+$ ./brokers/node2/bin/artemis run
+```
 
 ## Testing
 

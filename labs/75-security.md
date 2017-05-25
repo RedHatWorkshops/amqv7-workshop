@@ -1,4 +1,4 @@
-### AMQ 7 Security
+# AMQ 7 Security
 
 One of the key differences with AMQ 7 is the addition of new permissions.  AMQ 6 only had 3 permissions:
 
@@ -25,7 +25,7 @@ With the additional 7 permissions, we have finer grain control over assigning ro
 
 ## Security Labs
 
-# Permissions / Roles Lab 1
+### Permissions / Roles Lab 1
 
 This lab demonstrates how to setup a read-only user on A-MQ i.e. the user can only consumer from a given queue.
 

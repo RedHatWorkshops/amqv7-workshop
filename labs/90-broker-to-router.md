@@ -132,7 +132,7 @@ Thu May 25 09:46:19 2017 ROUTER_CORE (trace) Core action 'link_flow'
 
 Fire up the web console for the broker at [http://localhost:8161/hawtio](http://localhost:8161/hawtio) and try to find the `address.hellowrold` destination. 
 
-![](images/helloworldaddress.png)
+![](images/broker-to-router/helloworldaddress.png)
 
 As we send messages in to the router, you should watch the `foo` queue and see its message count increase.
 

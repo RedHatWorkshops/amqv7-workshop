@@ -97,7 +97,7 @@ INFO  | main | Initialized dispatch-hawtio-console plugin
 Now let's try running the Interconnect Router with the above configuration (ie, change the `connector` host IP and port to match your settings):
 
 ```bash
-docker run -it --rm --name qdr p 5672:5672 -v $(pwd)/qdr/conf/router-to-broker.conf:/etc/qpid-dispatch/qdrouterd.conf ceposta/qdr 
+docker run -it --rm --name qdr -p 5672:5672 -v $(pwd)/qdr/conf/router-to-broker.conf:/etc/qpid-dispatch/qdrouterd.conf ceposta/qdr 
 ```
 
 Note how we map the configuration file into the docker container. When we run this, we should see output from the Interconnect Router similar to this:

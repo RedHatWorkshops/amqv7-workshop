@@ -40,7 +40,9 @@ sudo rpm -Uvh qpid-dispatch-router-0.8.0-9.el7.x86_64.rpm
 
 ### Option 2 Using Docker
 
-With option 2, you can choose to use Docker and grab docker images:
+With option 2, you can choose to use Docker and grab docker images. Note you'll need some kind of Linux machine (or VM) if your Host machine isn't Linux. This could be Docker for Mac/Windows, Minikube, or the Red Hat CDK 3.0. In any event, setting up Linux for Docker usage is beyond the scope of this installation documentation. Also, when doing any kind of port forwarding between the docker guest VM and your local workstation host, it's up to you to figure out how to open up the ports if you're trying to communicate locally with it. 
+ 
+To get the docker image that contains the AMQ7 Interconnect Router: 
 
 ```bash
 docker pull ceposta/qdr:latest
@@ -52,5 +54,5 @@ You can run the image like this:
 docker run -itd --name qdr ceposta/qdr:latest
 ```
 
-In the next labs, we'll see how to attach configuration to the router.
+In the next labs, we'll see how to attach configuration to the router. Default configuration is in `/etc/qpid-dispatch/qdrouterd.conf`
 

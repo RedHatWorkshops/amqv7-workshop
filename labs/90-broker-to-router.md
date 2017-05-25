@@ -2,7 +2,7 @@
 
 In this lab we'll take a look at configuring the Interconnect Router to route messages to and from an AMQ7 broker. Clients can talk directly to the router and think they're talking to a broker.
 
-In this lab, we'll use the Docker images from the [installing interconnect router](./80-install-qdr.md) lab. You can use the same configuration files that we'll use here in your full version of RHEL/CentOS if you've installed Interconnect Router there.
+In this lab, we'll use the Docker images from the [installing interconnect router](./80-install-qdr.md) lab. You can use the same configuration files that we'll use here in your full version of RHEL/CentOS if you've installed Interconnect Router there. The broker we'll use comes from the earlier labs; it will be running locally on your laptop. Remember, you'll need to configure port forwarding between your docker guest VM and your developer host machine.
 
 First thing we'll do is look at and modify the configuration where needed. If you look in the lab files [for the Interconnect Router configurations](./qdr/conf), you'll see a configuration file named `router-to-broker.conf` that looks like this:
 

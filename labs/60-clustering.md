@@ -29,7 +29,7 @@ __Node 1__
 
   1. Open up the `brokers/node1/etc/broker.xml` file in your favorite text editor.
   1. Add the following elements anywhere under the `<core>` element:
-    ```xml
+    ```
     <connectors>
       <connector name="node1-connector">tcp://localhost:61616</connector>
       <connector name="node2-connector">tcp://localhost:61617</connector>
@@ -46,7 +46,7 @@ __Node 1__
     </cluster-connections>
     ```
   1. Add the following elements anywhere under the `<address-setting>` element whose `match` attribute is equal to "#" (meaning it matches all addresses):
-    ```xml
+    ```
     <redistribution-delay>0</redistribution-delay>
     ```
   1. Start the broker:
@@ -58,7 +58,7 @@ __Node 2__
 
   1. Open up the `brokers/node2/etc/broker.xml` file in your favorite text editor.
   1. Add the following elements anywhere under the `<core>` element:
-    ```xml
+    ```
     <connectors>
       <connector name="node1-connector">tcp://localhost:61616</connector>
       <connector name="node2-connector">tcp://localhost:61617</connector>
@@ -75,7 +75,7 @@ __Node 2__
     </cluster-connections>
     ```
   1. Add the following elements anywhere under the `<address-setting>` element whose `match` attribute is equal to "#" (meaning it matches all addresses):
-    ```xml
+    ```
     <redistribution-delay>0</redistribution-delay>
     ```
   1. Start the broker:

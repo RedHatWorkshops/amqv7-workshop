@@ -36,6 +36,10 @@ The following lab demonstrates setting up a 2-node master / slave cluster with s
 
 ### Lab - Shared-nothing replication between Master / Slave cluster
 
+#### Prerequisites
+
+Download the legacy ActiveMQ client JAR which supports OpenWire failover [here](https://mvnrepository.com/artifact/org.apache.activemq/activemq-all/5.14.5)
+
 1. Create a master and slave broker pair by running the following commands:
 
 ```

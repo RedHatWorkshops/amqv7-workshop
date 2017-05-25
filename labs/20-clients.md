@@ -30,7 +30,7 @@ Now we'll explore the client. In the distribution we just unzipped, there's an `
 
 
     $ cd examples
-    $ mvn clean install
+    $ mvn install
     
 If successful, you should see output like this:
     

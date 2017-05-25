@@ -1,4 +1,33 @@
-# Security Labs
+# AMQ 7 Security
+
+One of the key differences with AMQ 7 is the addition of new permissions.  AMQ 6 only had 3 permissions:
+
+1. read
+2. write
+3. admin
+
+which are described in more detail [here](http://activemq.apache.org/security.html).
+
+AMQ 7 on the other hand extends to 10 permissions.  They are:
+
+* createAddress
+* deleteAddress
+* createDurableQueue
+* deleteDurableQueue
+* createNonDurableQueue
+* deleteNonDurableQueue
+* send
+* consume
+* manage
+* browse
+
+With the additional 7 permissions, we have finer grain control over assigning roles to our users.  For more information about these new roles and how they map to the legacy AMQ 6 roles, please refer to the AMQ 7 [docs](https://access.redhat.com/documentation/en-us/red_hat_jboss_amq/7.0/html/using_amq_broker/security#ldap_authz).
+
+## Security Labs
+
+### Permissions / Roles Lab 1
+
+This lab demonstrates how to setup a read-only user on A-MQ i.e. the user can only consumer from a given queue.
 
 1. Create a new broker by executing the following command:
 

@@ -11,13 +11,6 @@ OpenJDK on Fedora
 Oracle JDK with  Mac
 
     http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-    
-Maven 3
-
-Download 3.3.9 from https://maven.apache.org/download.cgi ans unzip somewhere.
-make sure it is available on your path
-
-Git client
 
 Fedora
     

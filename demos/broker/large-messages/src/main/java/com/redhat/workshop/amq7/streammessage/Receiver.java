@@ -14,18 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.redhat.workshop.amq7.largemessage;
+package com.redhat.workshop.amq7.streammessage;
 
 
 import javax.jms.BytesMessage;
 import javax.jms.Connection;
-import javax.jms.MessageProducer;
+import javax.jms.ConnectionFactory;
+import javax.jms.MessageConsumer;
 import javax.jms.Queue;
 import javax.jms.Session;
 import javax.naming.InitialContext;
-import javax.jms.ConnectionFactory;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 
-public class Sender {
+public class Receiver {
    public static void main(String args[]) throws Exception{
 
       try {
@@ -39,11 +42,23 @@ public class Sender {
                Connection connection = cf.createConnection();
          ) {
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-            MessageProducer producer = session.createProducer(queue);
-            BytesMessage bytesMessage = session.createBytesMessage();
-            byte[] bytes = new byte[20480];
-            bytesMessage.writeBytes(bytes);
-            producer.send(bytesMessage);
+
+            connection.start();
+
+            MessageConsumer messageConsumer = session.createConsumer(queue);
+
+            connection.start();
+
+            BytesMessage messageReceived = (BytesMessage) messageConsumer.receive(120000);
+
+            File outputFile = new File("huge_message_received.dat");
+
+            try (FileOutputStream fileOutputStream = new FileOutputStream(outputFile)) {
+               BufferedOutputStream bufferedOutput = new BufferedOutputStream(fileOutputStream);
+
+               //This will save the stream and wait until the entire message is written before continuing.
+               messageReceived.setObjectProperty("JMS_AMQ_SaveStream", bufferedOutput);
+            }
          }
       } catch (Exception e) {
          e.printStackTrace();

@@ -33,7 +33,7 @@ import java.io.IOException;
 
 public class Sender {
 
-   private static final long FILE_SIZE = 1L;// * 1024 * 1024 * 1024; // 2 GiB message
+   private static final long FILE_SIZE = 1L;//1 GiB message
 
    public static void main(String args[]) {
       try {

@@ -55,7 +55,9 @@ large message size is specified by
 
    `ActiveMQConnectionFactory.setMinLargeMessageSize`.
 
-To see this in action start a Broker in the usual fashion and then run a sending client like so
+To see this in action start a Broker in the usual fashion.
+ 
+Use the 'com.redhat.workshop.amq7.largemessage.Sender'to send a large message like so:
 
       mvn verify -PLargeMessageSender
    
@@ -67,13 +69,54 @@ Obviously in reality the large message can be as large as the client can fir int
 
 Take a look in the large message store and you will see the large message file.
 
-You can consume the message by running:
+You can consume the message using the 'com.redhat.workshop.amq7.largemessage.Receiver' client by running:
  
-       mvn verify -PLargeMessageSender
+       mvn verify -PLargeMessageReceiver
        
 Note that the large message file has now disappeared.
        
 #### Streaming a large message
 
 If Client memory is also constrained then it is possible to stream a message straight from disc 
-  or another type of Inpiut Stream
+  or another type of Input Stream. This can only be done via the JMS API by sending a 
+  JMS BytesMessage and setting an input stream as an Object property, like so
+  
+```java
+  BytesMessage bytesMessage = session.createBytesMessage();
+  FileInputStream fileInputStream = new FileInputStream(inputFile);
+  BufferedInputStream bufferedInput = new BufferedInputStream(fileInputStream);
+  bytesMessage.setObjectProperty("JMS_AMQ_InputStream", bufferedInput);
+```
+
+The Client will stream the contents of the file direct to the TCP stream in chunks.
+This is then handled by the Broker as a large message. To see this in action use the 
+''com.redhat.workshop.amq7.streammessage.Sender'to send a stream message like so:'
+
+   mvn verify -PStreamMessageSender
+
+Inspect the large message store and you will again see the large message file.
+
+To consume a stream message you simple consume a JMS BytesMessage with an OutputStream using the
+ JMS API like so:
+ 
+ 
+```java
+   BytesMessage messageReceived = (BytesMessage) messageConsumer.receive(120000);
+   File outputFile = new File("huge_message_received.dat");
+   FileOutputStream fileOutputStream = new FileOutputStream(outputFile)
+   BufferedOutputStream bufferedOutput = new BufferedOutputStream(fileOutputStream);
+
+   //This will save the stream and wait until the entire message is written before continuing.
+   messageReceived.setObjectProperty("JMS_AMQ_SaveStream", bufferedOutput);
+```
+
+To see this in action use the 
+''com.redhat.workshop.amq7.streammessage.Receiver'to receive a stream message like so:'
+
+   mvn verify -PStreamMessageReceive
+   
+    > **Note**
+    >
+    > Stream messages and large messages are interchangeable so you can send a large
+    > message and consume a stream message and vice versa.
+   

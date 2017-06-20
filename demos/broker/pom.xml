@@ -45,7 +45,7 @@ under the License.
    <modules>
       <module>large-messages</module>
    </modules>
-   
+
    <dependencyManagement>
       <dependencies>
          <dependency>
@@ -67,6 +67,11 @@ under the License.
             <groupId>org.apache.geronimo.specs</groupId>
             <artifactId>geronimo-jms_2.0_spec</artifactId>
             <version>${geronimo.spec.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.apache.qpid</groupId>
+            <artifactId>qpid-jms-client</artifactId>
+            <version>0.21.0.redhat-1</version>
          </dependency>
       </dependencies>
    </dependencyManagement>

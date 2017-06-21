@@ -9,7 +9,7 @@ This worksheet covers security in the AMQ 7 broker. By the end of this you shoul
 
 ## AMQ 7 vs. AMQ 6
 
-Those familiar with AMQ 6 security will find lots of similarities in AMQ 7.  Both brokers leverage JAAS.  These JAAS login modules have ported over from AMQ 6 to AMQ 7 with minimal changes:
+Those familiar with AMQ 6 security will find lots of similarities in AMQ 7.  Both brokers leverage JAAS.  If you're unfamiliar with JAAS you can get a quick overview [here](https://en.wikipedia.org/wiki/Java_Authentication_and_Authorization_Service).  These JAAS login modules have ported over from AMQ 6 to AMQ 7 with minimal changes:
 * Properties files
 * LDAP
 * SSL certificate
@@ -17,18 +17,24 @@ Those familiar with AMQ 6 security will find lots of similarities in AMQ 7.  Bot
    
 The "dual" authentication feature is also present in AMQ 7.  This feature allows independent JAAS domains for SSL and non-SSL connections.
 
-AMQ 7 has more permission types than AMQ 6.
+AMQ 6 has these permission types:
 
-| 6 | 7 |
-| --- | --- |
-| read | consume |
-| write | send |
-| admin | manage |
-|  | createDurableQueue |
-|  | deleteDurableQueue |
-|  | createNonDurableQueue |
-|  | deleteNonDurableQueue |
-|  | browse |
+* **read**
+* **write**
+* **admin**
+
+Whereas AMQ 7 has these permission types:
+
+* **createDurableQueue** allows the user to create a durable queue
+* **deleteDurableQueue** allows the user to delete a durable queue
+* **createNonDurableQueue** allows the user to create a non-durable queue
+* **deleteNonDurableQueue** allows the user to delete a non-durable queue
+* **send** allows the user to send a message
+* **consume** allows the user to consume a message from a queue bound to matching addresses
+* **browse** allows the user to browse a queue bound to the matching address
+* **manage** allows the user to invoke management operations by sending management messages to the management address
+
+Creating and deleting queues is particularly important in AMQ 7 as that is how subscriptions are implemented.  For example, a JMS client wanting to create a durable subscription would need the `createDurableQueue` permission.
 
 ## Authentication
 

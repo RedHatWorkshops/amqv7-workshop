@@ -30,6 +30,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Random;
+
+import org.apache.activemq.artemis.utils.RandomUtil;
 
 public class Sender {
 
@@ -65,9 +68,13 @@ public class Sender {
    private static void createFile(final File file, final long fileSize) throws IOException {
         FileOutputStream fileOut = new FileOutputStream(file);
         try (BufferedOutputStream buffOut = new BufferedOutputStream(fileOut)) {
-           byte[] outBuffer = new byte[1024 * 1024];
-           for (long i = 0; i < fileSize; i += outBuffer.length) {
-              buffOut.write(outBuffer);
+
+           // Sends a 10MB file
+           for (int r = 0; r < 10 * 1024; r++) {
+              for (long c = 0; c < 1023; c ++) {
+                 buffOut.write(RandomUtil.randomChar());
+              }
+              buffOut.write('\n');
            }
         }
      }

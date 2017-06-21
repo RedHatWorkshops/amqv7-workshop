@@ -41,7 +41,9 @@ public class Sender {
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             MessageProducer producer = session.createProducer(queue);
             BytesMessage bytesMessage = session.createBytesMessage();
-            byte[] bytes = new byte[20480];
+
+            // Send a 100MB message
+            byte[] bytes = new byte[100 * 1024 * 1024];
             bytesMessage.writeBytes(bytes);
             producer.send(bytesMessage);
          }

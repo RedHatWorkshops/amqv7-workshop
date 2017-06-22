@@ -209,3 +209,107 @@ mvn verify -PHAQpidMessageSender
 ```
 
 Again try killing and restarting the brokers to see what happens.
+
+#### No Shared Store HA (Replication)
+
+Replication provides HA without the need for a shared data store. Basically the live shares all persistent data it receives
+with the backup broker, basically all data is replicated. As far as clients are concerned live and backups operate exactly
+the same as shared store, that is if the live fails it can connect to the backup.
+
+Lets start with a simple single master/slave pair, create both brokers by running the following commands:
+
+      $ARTEMIS_HOME/bin/artemis create --allow-anonymous --user admin --password password --cluster-user admin --cluster-password --clustered --replicated --host localhost liveRepl1
+      
+and
+
+      $ARTEMIS_HOME/bin/artemis create --allow-anonymous --user admin --password password --cluster-user admin --cluster-password --clustered --replicated --host localhost --port-offset 100 --slave backupRep1
+      
+Now start both brokers, in the live server you should see something like the following:
+
+```bash
+11:40:35,181 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending AIOSequentialFile:/home/ataylor/devtools/artemis-profiles/liveRepl1/./data/journal/activemq-data-2.amq (size=10,485,760) to replica.
+11:40:36,250 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile /home/ataylor/devtools/artemis-profiles/liveRepl1/./data/bindings/activemq-bindings-4.bindings (size=1,048,576) to replica.
+11:40:36,254 INFO  [org.apache.activemq.artemis.core.server] AMQ221025: Replication: sending NIOSequentialFile /home/ataylor/devtools/artemis-profiles/liveRepl1/./data/bindings/activemq-bindings-2.bindings (size=1,048,576) to replica.
+```
+
+and in the backup you should see:
+
+```bash
+11:40:34,614 INFO  [org.apache.activemq.artemis.core.server] AMQ221109: Apache ActiveMQ Artemis Backup Server version 2.0.0.amq-700008-redhat-1 [null] started, waiting live to fail before it gets active
+11:40:37,024 INFO  [org.apache.activemq.artemis.core.server] AMQ221024: Backup server ActiveMQServerImpl::serverUUID=2026f064-5737-11e7-8e99-e8b1fc559583 is synchronized with live-server.
+11:40:39,512 INFO  [org.apache.activemq.artemis.core.server] AMQ221031: backup announced
+```
+
+The live and the backup are now synchronized
+
+##### Data Synchronization
+
+Initially before the backup is started the live broker's journal is not replicated, until this happens the broker is not Highly Available.
+There are several steps that occur before the live broker is highly available, these are:
+
+   1. The backup broker once started will try to discover a live broker.
+   2. The backup broker will then ask the live broker if it can be its replica, if it cant it goes back to step 1.
+   3. The live broker will then initiate a replication channel back to the backup
+   4. The live broker then locks the journal and marks its current state, i.e the first and last journal page. It then unlocks
+   the journal and once again serves clients. Note this is a very short period.
+   5. The journal then sends each journal page to the backup broker.
+   6. The live once again locks the journal and sends the remaining journal files, that is all the records it has received since the initial journal pages are sent
+   7. The journal is now synchronized and starts normal replication.
+   
+Once replication is synchronized then every packet that the live broker receives from a client that carries persistent data such as a message
+also gets sent to the backup, lets use receiving a persistent message as an example to describe how this works:
+
+   1. The live broker receives a packet containing a persistent message.
+   2. In Parallel the broker writes the record to its journal and also sends it to the backup.
+   3. When the backup receives the record and acknowledges receipt to the live, it the asynchronously write the record to its own journal.
+   4. The live receives receipt from the backup and then acknowledges receipt to the client.
+   
+When the backup broker detects a dead live broker, it will finish synching any records to disc and then load in the journal and start.
+
+Kill the live broker and you should see the backup broker start up.
+
+Now restart the live broker to see what happens, what you will see is th elive just start as a live server and lots of warnings:
+
+```bash
+12:09:22,810 WARN  [org.apache.activemq.artemis.core.client] AMQ212034: There are more than one servers on the network broadcasting the same node id. You will see this message exactly once (per node) if a node is restarted, in which case it can be safely ignored. But if it is logged continuously it means you really do have more than one node on the same network active concurrently with the same node id. This could occur if you have a backup node active at the same time as its live node. nodeID=2026f064-5737-11e7-8e99-e8b1fc559583
+```
+
+This is a bad thing, we now have 2 brokers serving the sane data to clients, extra configuration is needed to avoid this.
+Stop the live broker and add 'check-for-live-server' to the policy:
+
+```xml
+<ha-policy>
+   <replication>
+      <master>
+         <check-for-live-server>true</check-for-live-server>
+      </master>
+   </replication>
+</ha-policy>
+```
+What you should see is the live broker start and act as a replica to the running backup broker:
+
+```bash
+12:24:42,936 ERROR [org.apache.activemq.artemis.core.server] AMQ224056: Live server will not fail-back automatically
+12:24:44,557 INFO  [org.apache.activemq.artemis.core.server] AMQ221024: Backup server ActiveMQServerImpl::serverUUID=2026f064-5737-11e7-8e99-e8b1fc559583 is synchronized with live-server.
+12:24:46,679 INFO  [org.apache.activemq.artemis.core.server] AMQ221031: backup announced
+```
+
+Now if you kill the backup the live will start.
+
+You can automate this by updating the backups policy to:
+
+```xml
+<ha-policy>
+   <replication>
+      <slave>
+         <allow-failback>true</allow-failback>
+      </slave>
+   </replication>
+</ha-policy>
+```
+Now try again, you will see the live become a replica and the backup restart in passive mode.
+
+Also try playing about whilst running clients from the shared store section.
+
+   > Note
+   > Every time a backup restarts it will create a new journal for the replica, any old journals are kept and stored for safety

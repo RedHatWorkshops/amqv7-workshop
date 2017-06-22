@@ -18,13 +18,16 @@ By the end of this you should know:
 
 There are 2 main issues that can happen when you send or receive messages to an AMQ 7 Broker.
 
+1. Memory Limits are exceeded in the broker
+2. Memory Limits are exceeded within the client
+
 #### Memory Limits within the broker
 
 Any message that is sent or consumed from a Broker has at some point to exist in memory before
-it can either be persisted to disc after receipt or delivered to a consumer. This can be problematic 
+it can either be persisted to disk after receipt or delivered to a consumer. This can be problematic 
 when running in an environment with limited memory. The AMQ7 Broker handles large messages by never 
- fully reading them into memory, instead the broker uses its large message store to hold the contents 
- of the message. The location of this is configured in the broker.xml file like so:
+ fully reading them into memory, instead the broker writes the large message directly to its large message store
+ located on disk.  The location of this is configured in the broker.xml file like so:
   
 ```xml
       <large-messages-directory>largemessagesdir</large-messages-directory>
@@ -39,8 +42,11 @@ This is always configured by default.
 
 ##### Sending a large message
 
-To configure the core JMS client to send a message you need to configure min-large-message-size on 
-the connection factory. This can be configured in multiple ways.
+To configure the core JMS client to send a message you need to configure "min-large-message-size" on 
+the connection factory. The min-large-message-size parameter is used in the client to determine when to mark a message
+as a "large message".  There are two ways to configure the "min-large-message-size" parameter on the connection factory.
+
+1. Using JNDI
 
 If JNDI is used to instantiate and look up the connection factory, the minimum large message size is configured in the 
 JNDI context environment, e.g. `jndi.properties`. Here's a simple example using the "ConnectionFactory" connection factory 
@@ -49,6 +55,8 @@ which is available in the context by default:
     java.naming.factory.initial=org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory
     connectionFactory.myConnectionFactory=tcp://localhost:61616?minLargeMessageSize=10240
 
+
+2. In Java code
 
 If the connection factory is being instantiated directly in Java, the minimum
 large message size is specified by
@@ -67,7 +75,8 @@ a bytes message of size 20480 bytes, the client will treat this as a large messa
 The Broker will then write these chunks to its large message store without having to keep them in memory.
 Obviously in reality the large message can be as large as the client can fir into memory.
 
-Take a look in the large message store and you will see the large message file.
+Take a look in the large message store directory.  You will notice a new file that contains the content of the message
+Note: The content is encoded so it's not human readable.
 
 You can consume the message using the 'com.redhat.workshop.amq7.largemessage.Receiver' client by running:
  
@@ -75,9 +84,14 @@ You can consume the message using the 'com.redhat.workshop.amq7.largemessage.Rec
        
 Note that the large message file has now disappeared.
        
-#### Streaming a large message
+#### Memory Limits within the broker
 
-If Client memory is also constrained then it is possible to stream a message straight from disc 
+In the previous example, we created a single byte array that contained the whole large message.  If client
+memory is also constrained this may not be possible.
+
+##### Streaming a large message
+
+  However, it is possible to stream a message straight from disk 
   or another type of Input Stream. This can only be done via the JMS API by sending a 
   JMS BytesMessage and setting an input stream as an Object property, like so
   
@@ -90,7 +104,7 @@ If Client memory is also constrained then it is possible to stream a message str
 
 The Client will stream the contents of the file direct to the TCP stream in chunks.
 This is then handled by the Broker as a large message. To see this in action use the 
-''com.redhat.workshop.amq7.streammessage.Sender'to send a stream message like so:'
+''com.redhat.workshop.amq7.streammessage.Sender'.  
 
    mvn verify -PStreamMessageSender
 
@@ -113,7 +127,7 @@ To consume a stream message you simple consume a JMS BytesMessage with an Output
 To see this in action use the 
 ''com.redhat.workshop.amq7.streammessage.Receiver'to receive a stream message like so:'
 
-   mvn verify -PStreamMessageReceive
+   mvn verify -PStreamMessageReceiver
    
     > **Note**
     >

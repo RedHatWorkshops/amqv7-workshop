@@ -18,18 +18,18 @@ By the end of this you should know:
 
 ### AMQ7 Clustering Concepts
 
-multiple instances of AMQ7 Brokers can be grouped together to share message processing load.
+Multiple instances of AMQ7 Brokers can be grouped together to share message processing load.
 Each Broker manages its own messages and connections and is connected to other brokers with
-Cluster bridges that are used to send Topology information, such as queues and consumers, 
+"cluster bridges" that are used to send Topology information, such as queues and consumers, 
 as well as load balancing messages.
  
 ### Simple 2 node cluster
 
-Lets create 2 clustered brokers using the CLI, firstly thos since AMQ 7 uses UDP for discovery 
+Lets create 2 clustered brokers using the CLI, firstly, since AMQ 7 uses UDP for discovery 
 you will need to ensure that a loopback address is created, this will allow UDP to work on the same machine.
-On Linux run the command
+On Linux run the following command.
 
-      route add -net 224.0.0.0 netmask 240.0.0.0 dev lo
+      sudo route add -net 224.0.0.0 netmask 240.0.0.0 dev lo
       
 On a Mac this will be something like
 
@@ -128,11 +128,32 @@ like so:
 
 ##### Discovery without UDP (Static Connectors), Optional
 
-If UDP is not available then Brokers can be statically configured. This is done purely thru connectors.
+If UDP is not available then Brokers can be statically configured. This is done purely through connectors.
 
-lets update broker1 and 2 to use static connectors.
+Lets update broker1 and 2 to use static connectors.
 
 Firstly remove both the broadcast and discovery groups configuration completely.
+
+```xml
+    <!-- remove the following lines -->
+    <broadcast-groups>
+         <broadcast-group name="bg-group1">
+            <group-address>231.7.7.7</group-address>
+            <group-port>9876</group-port>
+            <broadcast-period>5000</broadcast-period>
+            <connector-ref>artemis</connector-ref>
+         </broadcast-group>
+      </broadcast-groups>
+
+      <discovery-groups>
+         <discovery-group name="dg-group1">
+            <group-address>231.7.7.7</group-address>
+            <group-port>9876</group-port>
+            <refresh-timeout>10000</refresh-timeout>
+         </discovery-group>
+      </discovery-groups>
+
+```
 
 Then add a connector that points to the other broker, so on broker 1 it would look like:
 
@@ -146,7 +167,7 @@ broker 2 would look like
 <connector name="discovery-connector">tcp://127.0.0.1:61616</connector>
 ```
 
-Lastly remove the discovery-group-ref from the cluster-connection config and replace it with the following:
+Lastly remove the discovery-group-ref from the cluster-connection elemet and replace it with the following:
 
 ```xml
 <static-connectors>
@@ -193,7 +214,7 @@ available consumers.
 
    > Note
    > Messages are routed at the point they arrive at the broker and before they arrive on a queue. 
-   > They wil leitehr route to a local queue or to a queue on another broker
+   > They will either route to a local queue or to a queue on another broker
 
 We can test this using the cli, but firstly each broker needs to be stopped and the clustered queues configured,
 add the following queue to each broker:

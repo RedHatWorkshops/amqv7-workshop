@@ -82,7 +82,13 @@ Go back to the HawtIO console, navigate to the each of the queues we created and
 ```
 
 #### Outbound Routing
-Before we move on, it's important to introduce one more component of the Core API - the server consumer.  The server consumer receives messages from a single queue within the broker.  One queue may have more that one server consumer.  The broker takes care of distributing messages from queues to server consumers.  For the sake of this tutorial we'll call the routing of messages from queues to consumers **outbound** routing.  We'll take a look at how these internal consumers play a role within the overall broker picture.
+Before we move on, it's useful to take note of one more component of the AMQ7 Core API - the server consumer.
+
+The server consumer is another Core API concept.  The server consumer receives messages from a single queue within the broker. The broker takes care of distributing messages from queues to server consumers.  they are created by protocol managers and receive messages from queues.  When a message is received by a server consumer, it notifies the protocol manager. A couple of things to note:
+    * One queue may have more that one server consumer.
+    * The AMQ7 broker takes care of distributing messages from queues to server consumers.
+    
+For the sake of this tutorial we'll call the routing of messages from queues to consumers **outbound** routing.  We'll take a look later at how these internal consumers play a role within the overall AMQ7 broker picture.
 
 ## Addressing Wildcard Syntax
 AMQ 7 offers a wildcard syntax.  Wildcards can be used in address names and are used to match received messages.  
@@ -145,17 +151,22 @@ mvn verify -PJMSQueueReceiver
 Navigate back to the HawtIO console and view the queue.  You will notice that the consumer count on the orders queue is now 1.
 
 #### What's happening under the covers
-Pretty basic stuff, but it's good to know what happened under the covers here.
+Pretty basic stuff, but it's good to know what has happened under the covers.
 
-The example application created a JMS queue consumer.  The JMS AMQP client takes care of interacting with the broker to set up the relevant addresses, queues, routing types and server consumers.  
+The example application created a JMS queue consumer.  The JMS AMQP client takes care of interacting the the AMQ7 broker to set up the relevant addresses, queues, routing types and server consumers.  
 
 How does it do this?
 
-The JMS AMQP client library sends an AMQP packet (ATTACH) to the broker.  This packet has a bunch of information including the link name, durability, source and target address and some additional information (terminus capabilities).  The AMQP protocol manager handles the packet and inteprets this information, attempting to satisfy the AMQP request by interacting with the Core API.
+1. The JMS AMQP client library sends an AMQP packet (ATTACH) to the broker.  This is essentially the AMQP way of sending request to create a queue subscriber.  This packet has a bunch of information including the link name, durability, source and target address and some additional information (terminus capabilities) that defines the type of endpoint the user has requested (i.e. Queue).  
+2. The AMQP protocol manager handles the packet0 and inteprets the ATTACH information, attempting to satisfy the AMQP request by interacting with the AMQ7 broker Core API.  The steps that take to achieve this are as follows:
+    1. Protocol manager inspects the ATTACH packet to determine whether a sender or receiver link should be created.
+    2. Protocol manager uses the source address on the packet and interacts with the Core API to query for an address that matches.
+    3. The broker checks to see if there are any terminus capabilities set on the ATTACH packet (the AMQP way of requesting certain features of the endpoint), in this case, QUEUE is present.  
+    4. The AMQP protocol manager interprets QUEUE as a request for an address with ANYCAST enabled.  It verifies that the matching address has the appropriate routing type, it does.  
+    5. The protocol manager attempts to locate a queue associated with the address.  It finds the queue "orders" and so creates a new  server consumer bound to the "orders" queue.
+    6. The server consumer triggers when a message is available, informing the protocol manager, which in turn forwards the message onto the JMS client.
 
-Firstly, the protocol manager inspects the ATTACH packet to determine whether a sender or receiver link shouold be created. It looks at the source address on the packet and interacts with the Core API to query for an address that matches this source address.  Next the broker checks to see if there are any terminus capabilities set on the ATTACH packet, in this case, QUEUE would be set by the JMS client.  The AMQP protocol manager interprets this as a request for an address with ANYCAST enabled.  It verifies that the matching address has the appropriate routing type, it does.  Next it attempts to locate a queue associated with the address.  It finds the queue "orders" and so creates a new server consumer bound to the "orders" queue.  The server consumer will trigger when a message is available, informing the protocol manager, which in turn forwards the message onto the JMS client.
-
-It's not important to understand the details of the JMS to AMQP bindings and interaction within the broker.  The key thing to take away here is that each protocol manager performs it's own protocol specific logic to process a request or handle a packet.  It does this by interacting with the Core API.  When dealing with consumers, addresses and subscriptions, the protocol managers break down the request into the 4 core concepts we described earlier, Addresses, Queues, Routing Types and Server Consumers.
+Note: It's not important to understand all the details of the JMS to AMQP bindings and interaction within the broker.  The key thing to take away here is that each protocol manager performs it's own protocol specific logic to process a request or handle a packet.  It does this by interacting with the Core API.  When dealing with protocol specific versions of consumers, addresses and subscriptions, protocol managers break down the request into the 4 core concepts we described earlier, addresses, queues, routing types and server consumers.
 
 ### Auto creation
 

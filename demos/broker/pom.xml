@@ -32,6 +32,7 @@ under the License.
        <maven.compiler.target>1.8</maven.compiler.target>
       <amq7.version>2.0.0.amq-700005-redhat-1</amq7.version>
       <geronimo.spec.version>1.0.0.alpha-2-redhat-2</geronimo.spec.version>
+      <qpid.jms.version>0.23.0</qpid.jms.version>
    </properties>
 
    <repositories>
@@ -44,10 +45,16 @@ under the License.
 
    <modules>
       <module>large-messages</module>
+      <module>high-availability</module>
    </modules>
 
    <dependencyManagement>
       <dependencies>
+         <dependency>
+            <groupId>org.apache.qpid</groupId>
+            <artifactId>qpid-jms-client</artifactId>
+            <version>${qpid.jms.version}</version>
+         </dependency>
          <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>artemis-commons</artifactId>

@@ -46,6 +46,7 @@ public class Sender {
                for (int j = 0 ; j < 10; j++) {
                   TextMessage textMessage = session.createTextMessage("message " + i++);
                   producer.send(textMessage);
+                  System.out.println("sent message " + (i - 1));
                }
                try {
                   session.commit();

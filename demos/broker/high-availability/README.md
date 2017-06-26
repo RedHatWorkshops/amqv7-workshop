@@ -313,3 +313,50 @@ Also try playing about whilst running clients from the shared store section.
 
    > Note
    > Every time a backup restarts it will create a new journal for the replica, any old journals are kept and stored for safety
+
+##### Detecting Broker Death
+
+Having a single live/backup replicated pair is fine if you have a reliable network, however if there is some sort of Network Outage
+then the backup will think the live is dead and start. You can replicate this happening by logging into the console of the live broker,
+clicking on the broker (localhost) in the JMX tree on the left and from the operations tab executing the 'freezeReplication' operation.
+You will see the backup start and warning messages:
+
+```bash
+11:59:27,160 WARN  [org.apache.activemq.artemis.core.client] AMQ212034: There are more than one servers on the network broadcasting the same node id. You will see this message exactly once (per node) if a node is restarted, in which case it can be safely ignored. But if it is logged continuously it means you really do have more than one node on the same network active concurrently with the same node id. This could occur if you have a backup node active at the same time as its live node. nodeID=277fc045-57ff-11e7-a8d4-a32f2682e317
+```
+
+Split brain has now occurred.
+
+There are 2 extra configurations you can use to avoid split brain, the first is to make sure there are enough pairs of brokers 
+so that the backup can vote for a quorum before its  starts to go live, for this you need a minimum of 3 pairs.
+
+Lets create another 2 pairs of brokers so we have a quorum:
+
+```bash
+$ARTEMIS_HOME/bin/artemis create --allow-anonymous --user admin --password password --cluster-user admin --cluster-password --clustered --replicated --host localhost --port-offset 200 liveRepl2
+```
+
+```bash
+$ARTEMIS_HOME/bin/artemis create --allow-anonymous --user admin --password password --cluster-user admin --cluster-password --clustered --replicated --host localhost --port-offset 300 --slave backupRep2
+```
+
+```bash
+$ARTEMIS_HOME/bin/artemis create --allow-anonymous --user admin --password password --cluster-user admin --cluster-password --clustered --replicated --host localhost --port-offset 400 liveRepl3
+```
+
+```bash     
+$ARTEMIS_HOME/bin/artemis create --allow-anonymous --user admin --password password --cluster-user admin --cluster-password --clustered --replicated --host localhost --port-offset 500 --slave backupRep3
+```
+
+Now start all of the brokers.
+
+Now log into the admin console of the liverep1 broker and click on the 'freezeReplication' operation and see what happens. 
+Since there are 3 pairs in the cluster the backup can now vote for a quorum to decide whether it should start or not. The 
+backup will send a vote to the 2 of the live servers (not the live server it is replicating from) and ask it to vote on whether 
+it can become live. Each live server then responds true if it to has been disconnected from the backups live or false if
+it thinks it is still running. In this case the backups vote will fail and it will return to passive mode until it can reconnect
+to a live broker to once again replicate.
+
+Now restart all 6 nodes again and this time kill a live broker by using ctrl-c instead. This time the backups vote will succeed
+and the backup will start as live.
+

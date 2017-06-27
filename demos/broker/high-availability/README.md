@@ -33,7 +33,7 @@ and how clients interact with HA brokers and then a deeper dive into replicated 
 
 #### Shared-store HA
 
-Lets start by creating a live/backup pair of brokers using the CLI, to create the live run:
+Let's start by creating a live/backup pair of brokers using the CLI, to create the live run:
 
 ```
 $ <AMQ_HOME>/bin/artemis create --allow-anonymous --user admin --password password --cluster-user admin --cluster-password --clustered --shared-store --host localhost --data ../shared-store ../instances/halive1
@@ -62,8 +62,8 @@ view drop down on the right hand side of the diagram tab, it should look like:
 
 ![alt text](etc/backup.png "Broker Diagram")
 
-Now lets look at the configurations of the brokers, the first thing you will notice is that both the configurations
-both have clustered configs (i.e. `broadcast-groups`, `discovery-groups`, and `cluster-connections`). Even though this is not specifically
+Now let's look at the configurations of the brokers, the first thing you will notice is that both the configurations
+have clustered configs (i.e. `broadcast-groups`, `discovery-groups`, and `cluster-connections`). Even though this is not specifically
 a clustered topology the same mechanics are used in sharing the topology with the master node, it also simplifies the
 configuration if multiple live/back pairs are deployed in a cluster.
 
@@ -141,7 +141,7 @@ queue.queue/exampleQueue=exampleQueue
 The important configuration is `ha=true`. This tells the connection that when disconnected it should retry with the live and its backup.
 The rest of the parameters specify how long, how often, and at what interval it should keep retrying.
 
-Now lets run an example sender and receiver by running the following commands:
+Now let's run an example sender and receiver by running the following commands:
 
 ```bash
 $ mvn verify -PHAMessageReceiver
@@ -205,21 +205,21 @@ One major difference is that qpid JMS will not throw an exception on blocking se
 So for instance when sending a persistent message the client will try to resend it if failover occurs which could
 cause duplicates. The same also applies for consumed messages depending on the acknowledgement mode.
 
-make sure the previous core JMS receiver client is running and run the qpid JMS Sender using the command:
+Make sure the previous core JMS receiver client is running and run the qpid JMS Sender using the command:
 
 ```bash
 mvn verify -PHAQpidMessageSender
 ```
 
-Again try killing and restarting the brokers to see what happens.
+Again, try killing and restarting the brokers to see what happens.
 
 #### Shared-nothing HA (Replication)
 
 Replication provides HA without the need for a shared data store. Basically the live shares all persistent data it receives
-over the network with the backup broker. Basically all data persistent is replicated. As far as clients are concerned live and backups operate exactly
+over the network with the backup broker. As far as clients are concerned live and backups operate exactly
 the same as shared store (i.e. if the live fails it can connect to the backup).
 
-Lets start with a simple single master/slave pair, create both brokers by running the following commands:
+Let's start with a simple single master/slave pair, create both brokers by running the following commands:
 
 ```sh
 $ <AMQ_HOME>/bin/artemis create --allow-anonymous --user admin --password password --cluster-user admin --cluster-password --clustered --replicated --host localhost liveRepl1
@@ -247,7 +247,7 @@ INFO  [org.apache.activemq.artemis.core.server] AMQ221024: Backup server ActiveM
 INFO  [org.apache.activemq.artemis.core.server] AMQ221031: backup announced
 ```
 
-The live and the backup are now synchronized
+The live and the backup are now synchronized.
 
 ##### Data Synchronization
 

@@ -5,7 +5,7 @@ This worksheet covers the addressing model in the AMQ 7 broker.  By the end of t
 1. The core addressing concepts:
     * How routing works
     * How protocol managers implemented various address semantics using the Core API
-    * How to do define address semantics in broker configuration
+    * How to define address semantics in broker configuration
 2. How to configure:
     * address-settings
     * addresses with wildcards
@@ -36,7 +36,13 @@ Note.  There is only ever one instance of the message stored within the broker. 
 
 In this section we'll demonstrate the broker **inbound** routing logic.  We'll create two addresses, one MULTICAST and one ANYCAST, and we'll show how routing behaviour differs between them.
 
-Leave the broker running and open up `AMQ_INSTANCE/etc/broker.xml`. Add the following lines to the `addresses` element:
+If you dont already have a broker running, create a new instance and start it:
+
+```bash
+$ARTEMIS_HOME/bin/artemis create --allow-anonymous --user admin --password password  myBroker
+```
+
+Now add the following lines to the `addresses` element:
 
 ```xml
 <address name="p2p">
@@ -52,7 +58,9 @@ Leave the broker running and open up `AMQ_INSTANCE/etc/broker.xml`. Add the foll
 </address>
 ```
 
-AMQ 7 can pick up new addresses and queues from broker.xml at runtime.  Go the the HawtIO console and verify that the addresses and queues were successfully created.
+AMQ 7 can pick up new addresses and queues from broker.xml at runtime.  Go the the HawtIO console and verify that the 
+addresses and queues were successfully created.  You can do this by logging into http://localhost:8161/hawtio, clicking on the
+Artemis tab and navigating to the queues in the left hand panel. You can also view the diagram and see a graphical representation of the queues.
 
 Let's send some messages to the address.  To do this, we'll use the qsend and qreceive tools.
 
@@ -61,12 +69,37 @@ qsend p2p -m "This message should only be routed to a single queue"
 qsend pubSub -m "This message should be routed to multiple queues"
 ```
 
-Go back to the HawtIO console, navigate to the each of the queues we created and browse their messages.  Notice that sub1 and sub2 have a copy of the message.  Have a play around to see how various configurations behave.  Try:
+Go back to the HawtIO console, navigate to the each of the queues we created and browse their messages.  Notice that sub1 
+and sub2 have a copy of the message.  Have a play around to see how various configurations behave.  Try:
 
 1. Adding more than one ANYCAST queue to an address.
 2. Adding both ANYCAST queues and MULTICAST queues to the same address.
 3. Creating two addresses that contain wildcards with ANYCAST and MULTICAST queues, send messages that match both wildcarded addresses.
     * "." = path separator, "*" wildcard
+    
+    > Note auto creation of queues can effect how this works, for instance if you create an address topic.* and topic.foo
+    > and send a message to topic.bar then this address will be autocreated. Turn auto creation off for this exercise
+    
+example, try sending messages to topic.foo and topic.bar:
+
+```xml
+<address name="topic.*">
+   <multicast>
+      <queue name="sub6"/>
+   </multicast>
+</address>
+<address name="topic.foo">
+   <multicast>
+      <queue name="sub7"/>
+   </multicast>
+</address>
+<address name="topic.bar">
+   <multicast>
+      <queue name="sub8"/>
+   </multicast>
+</address>
+```
+    
 4. Creating queues with filters.
     * Example xml: 
 
@@ -140,7 +173,8 @@ To create a JMS Queue add the following snippet of XML to the broker config:
 </address>
 ```
 
-Note: There is a current restriction with JMS naming in that any JMS queue must share the same name as it's address.  In this case the address and queue name are "orders".
+Note: There is a current restriction with JMS naming in that any JMS queue must share the same name as it's address.  
+In this case the address and queue name are "orders".
 
 Navigate to the addressing demo and run the JMSQueueReceiver example.
 
@@ -153,7 +187,8 @@ Navigate back to the HawtIO console and view the queue.  You will notice that th
 #### What's happening under the covers
 Pretty basic stuff, but it's good to know what has happened under the covers.
 
-The example application created a JMS queue consumer.  The JMS AMQP client takes care of interacting the the AMQ7 broker to set up the relevant addresses, queues, routing types and server consumers.  
+The example application created a JMS queue consumer.  The JMS AMQP (qpid JMS) client takes care of interacting the the AMQ7 broker 
+to set up the relevant addresses, queues, routing types and server consumers.  
 
 How does it do this?
 
@@ -210,7 +245,7 @@ mvn verify -PJMSQueueReceiverAutoCreate
 Try adding the "auto.create" address with "MULTICAST" enabled and a multicast queue and run the JMSQueueReceiverAutoCreate example again.  What happens?
 
 ```xml
-<addresss name="auto.created">
+<address name="auto.created">
    <multicast>
       <queue name="auto.created" />
    </multicast>

@@ -366,3 +366,4 @@ to a live broker to once again replicate.
 Now restart all 6 nodes again and this time kill a live broker by using ctrl-c instead. This time the backups vote will succeed
 and the backup will start as live.
 
+so in general the backup needs n/2 + 1 votes to start where n is the number of nodes.

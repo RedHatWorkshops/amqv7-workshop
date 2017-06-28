@@ -14,7 +14,7 @@ Those familiar with AMQ 6 security will find lots of similarities in AMQ 7.  Bot
 * LDAP
 * SSL certificate
 * Guest
-   
+
 The "dual" authentication feature is also present in AMQ 7.  This feature allows independent JAAS domains for SSL and non-SSL connections.
 
 AMQ 6 has these permission types:
@@ -42,7 +42,7 @@ Configuration starts in `AMQ_INSTANCE/etc/bootstrap.xml`.  This is the default c
 
     <jaas-security domain="PropertiesLogin"/>
 
-The `domain` attribute refers to the relevant login module entry in `AMQ_INSTANCE/etc/login.config`. For example, if an instance was created with the following command:
+The `domain` attribute refers to the relevant login module entry in `AMQ_INSTANCE/etc/login.config`. For example, if an instance were created with the following command:
 
 ```
 $ <AMQ_HOME>/bin/artemis create --user admin --password password --role admin --allow-anonymous <AMQ_HOME>/instances/mybroker
@@ -56,13 +56,13 @@ Then this would appear in `login.config`:
            reload=true
            org.apache.activemq.jaas.properties.user="artemis-users.properties"
            org.apache.activemq.jaas.properties.role="artemis-roles.properties";
-    
+
        org.apache.activemq.artemis.spi.core.security.jaas.GuestLoginModule sufficient
            debug=false
            org.apache.activemq.jaas.guest.user="admin"
            org.apache.activemq.jaas.guest.role="admin";
     };
-    
+
 The `--allow-anonymous` switch in the `artemis create` command ensures the "guest" login module is added to `login.config` so that anonymous users can access the broker.  By default, anonymous are assigned the user and role also specified in the `artemis create` command via the `user` and `role` switches.  Alternatively one can omit `--allow-anonymous` and specify `--require-login` instead and the "guest" login module will be omitted from `login.config`.
 
 By default user credentials and role information are stored in the properties files `artemis-users.properties` and `artemis-roles.properties` respectively.
@@ -83,7 +83,7 @@ users=system,user
 guests=guest
 ```
 
-    
+
 By default passwords are hashed using `PBKDF2WithHmacSHA1`.  However, un-hashed passwords can be manually added if desired by creating an entry without the ENC(<hash>) syntax.
 
 The CLI support commands to manipulate these files, e.g.:

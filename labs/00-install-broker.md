@@ -13,13 +13,13 @@ The Broker comes with the management console, but the Interconnect Router and ea
 
 We'll start by downloading the binaries for JBoss AMQ 7 Broker. In later labs, we'll get to the [clients](20-clients.md) as well as the [interconnect router](80-install-qdr.md)
 
-All of the components are available at the [Downloads page] of [https://developers.redhat.com/products/amq/overview/](https://developers.redhat.com/products/amq/overview/). Navigate to that page and download the AMQ7 Broker:
+All of the components are available at the [Downloads page](https://developers.redhat.com/products/amq/download/) of [https://developers.redhat.com/products/amq/overview/](https://developers.redhat.com/products/amq/overview/). Navigate to that page and download the AMQ7 Broker:
 
 ![Download AMQ7 Broker](images/install/downloadbroker.png)
 
 Alternatively, if you are a current Red Hat customer, you can download the latest AMQ7 (and any associated patches) from the [Red Hat Customer Portal](https://access.redhat.com/products/red-hat-jboss-amq/). Even if you don't currently have JBoss AMQ subscriptions, you still have access to all of the Red Hat products and documentation for development/evaluation purposes. 
 
-Once you click one of the download links and you have the broker downloaded, navigate to your command line (Powershell, Bash, Cygwin, etc) and locate the newly downloaded file (ie, `jboss-amq-7.0.0.redhat-1-bin.zip`). You can move this .zip file to a location of your choosing (ie, /Users/ceposta/dev/labs or something). 
+Once you click one of the download links and you have the broker downloaded, navigate to your command line (Powershell, Bash, Cygwin, etc) and locate the newly downloaded file (e.g. `jboss-amq-7.0.0.redhat-1-bin.zip`). You can move this .zip file to a location of your choosing (e.g. ~/dev/labs or similar). 
 
 Using your favorite `unzip` utility, unzip the `jboss-amq-7.0.0.redhat-1-bin.zip` binary file and navigate into the newly created directory:
  
@@ -176,7 +176,7 @@ Take a quick glance at the log output and note a few things:
 
 * The location of our transaction logs and cluster configuration
 * We're using the NIO Journal for persistence
-* We have a single port, `61616` that can accept connections for multiple protocols (ie, `CORE`, `MQTT`, `AMQP`, `STOMP`, `HORNETQ`, `OPENWIRE`
+* We have a single port, `61616` that can accept connections for multiple protocols (i.e. `CORE`, `MQTT`, `AMQP`, `STOMP`, `HORNETQ`, `OPENWIRE`)
 * We have individual ports for each protocol as well
 * We see that the web console has been started at `http://localhost:8161`
 * We see that the Jolokia (a JMX over REST) service has been started at `http://localhost:8161/jolokia`

@@ -1,8 +1,8 @@
 # Configuring AMQ 7
 
-In this lab, we'll take a look at the AMQ7 configuration files and some basic configuration options and things to be aware of. For more specific configurations (like persistence, clustering, etc) we'll dig into those in later labs. 
+In this lab, we'll take a look at the AMQ7 configuration files and some basic configuration options and things to be aware of. We'll dig into more specific configurations (like persistence, clustering, etc) in later labs.
 
-If we navigate back to our `brokers/myfirstbroker` installation that we created in the previous lab we can examine our configuration. AMQ7 configuration is stored in eth `etc/` folder. If we do a listing of the `etc/` folder we should see something similar to the following:
+If we navigate back to our `brokers/myfirstbroker` installation that we created in the previous lab we can examine our configuration. AMQ7 configuration is stored in `etc/` folder. If we do a listing of the `etc/` folder we should see something similar to the following:
 
     $ cd brokers/myfirstbroker
     $ ls -l ./etc/
@@ -31,13 +31,13 @@ If you'd like more information on the rest of the files, [see the product docume
 The `bootstrap.xml` file is fairly straight forward and contains a small set of configurations for starting a broker. The most important configuration here is the `<server configuration=""/>` element. This configuration setting allows us to instruct the bootstrap runtime where the main configuration file is. We may opt to keep these configuration settings in a version controlled repository that gets installed into the server where the AMQ7 broker runs independently of how/when the broker gets created. Alternatively, if we choose to run our broker in a container environment, we may want to mount in the config files independently of the broker/container. The default setting is:
 
     <server configuration="${artemis.URI.instance}/etc/broker.xml"/>
-    
+
 The `bootstrap.xml` file also designates what applications are installed on the webserver that hosts the management console for our broker. We can configure details about this server (where it binds to, etc) as well as what application are exposed. Have a look at the `bootstrap.xml` file for more details and default configuration.  
 
 Lastly, we can specify the bootstrap security configurations, like the JAAS domain name.
- 
+
 ### broker.xml
- 
+
 The most important configuration file is the `broker.xml` file. We'll cover some of the specifics of these configuration settings in subsequent labs, but just be aware, the major sections of configuration:
 
 * persistence
@@ -57,11 +57,11 @@ Note, if we were to remove addresses/queues, these would not be removed upon rel
 
 #### Persistence
 
-In the persistence section, we can configure whether we will use persistence (true/false), what type of journal impelemntation we'll use (NIO/AIO/JDBC) and the location on disk where the journals will be held for potentially different classes of messages (bindings, large-messages, main journal, etc). You can also tune the journal write buffers, number of files to keep etc, using this group of configuration settings. 
+In the persistence section, we can configure whether we will use persistence (true/false), what type of journal impelemntation we'll use (NIO/AIO/JDBC) and the location on disk where the journals will be held for potentially different classes of messages (bindings, large-messages, main journal, etc). You can also tune the journal write buffers, number of files to keep etc, using this group of configuration settings.
 
 #### Security
 
-AMQ7 has fine grained Role Based Access Control for specifying what users can do when they connect and interact with addresses in the messaging system.  Using the Security section of the `broker.xml` configuration file, we can assign roles to specific permissions such as `createDurableQueues` or `browse`, `send`, or `consume`, etc. 
+AMQ7 has fine grained Role Based Access Control for specifying what users can do when they connect and interact with addresses in the messaging system.  Using the Security section of the `broker.xml` configuration file, we can assign roles to specific permissions such as `createDurableQueues` or `browse`, `send`, or `consume`, etc.
 
 #### Acceptors
 
@@ -89,7 +89,7 @@ Acceptors are the "window" into the broker and is what clients connect to. Using
 
 ```
 
-For example, to connect as an AMQP client, you'd configure your client to connect on port `5672` which is the default AMQP port. Alternatively, as you can see, there is a single acceptor that's capable of detecting and serving multiple protocols that listens on port `61616`. An AMQP (or STOMP, etc) clinet could also connect to this port.
+For example, to connect as an AMQP client, you'd configure your client to connect on port `5672` which is the default AMQP port. Alternatively, as you can see, there is a single acceptor that's capable of detecting and serving multiple protocols that listens on port `61616`. An AMQP (or STOMP, etc) client could also connect to this port.
 
 #### Addresses
 
@@ -125,7 +125,7 @@ In this lab, we're going to do two things:
 1. Remove all of the `acceptors` except the default one on port `61616` which can handle all protocols
 2. Add a new address and route it to a queue
 
-First, make sure your broker is stopped. In the previous lab we started the broker in the foreground; if it's still running, do a CTL+C (^C) to gracefully bring it down. 
+First, make sure your broker is stopped. In the previous lab we started the broker in the foreground; if it's still running, do a CTRL+C (^C) to gracefully bring it down.
 
 
 ### 1. Remove all acceptors
@@ -169,11 +169,11 @@ Now start up your broker in the foreground like we did in the previous lab:
 
     ./bin/artemis run
 
-When the broker starts up, you should see ONLY the single acceptor in the logs (see below). You will see logs saying protocol modules have been found, but that's OKAY. 
+When the broker starts up, you should see ONLY the single acceptor in the logs (see below). You will see logs saying protocol modules have been found, but that's OKAY.
 
 ![Single acceptor started up](images/configuration/startup.png)
 
-    
+
 ### 2. Add a new address
 
 Now that our broker is running, let's try adding a new address and watch it reload the configuration automatically. Fire up your favorite editor again and edit the `etc/broker.xml` file.

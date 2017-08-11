@@ -30,7 +30,7 @@ Now we'll explore the client. In the distribution we just unzipped, there's an `
 
 
     $ cd examples
-    $ mvn install
+    $ mvn -s example-settings.xml install
     
 If successful, you should see output like this:
     
@@ -99,7 +99,7 @@ Review the code closer to get an idea of what it's doing:
 
 To run this example, we'll first download all of the project's dependencies:
 
-    $ mvn clean package dependency:copy-dependencies -DincludeScope=runtime -DskipTests
+    $ mvn -s example-settings.xml clean package dependency:copy-dependencies -DincludeScope=runtime -DskipTests
     
 Next, we need to make sure our broker is running. If you've followed from the previous labs, you have a broker running with a single `Acceptor` running on port `61616`. Let's change our `jndi.properties` file to reflect this change. (if you're coming to this lab from your own installation/running instance of the AMQ7 broker, adjust the properties as needed; e.g., if you still have the dedicated AMQP `Acceptor` running, then no need to make this change). 
 
@@ -124,7 +124,7 @@ topic.myTopicLookup = topic
     
 Now let's build our project and run:
 
-    $ mvn clean install
+    $ mvn -s example-settings.xml clean install
     $ java -cp "target/classes/:target/dependency/*" org.apache.qpid.jms.example.HelloWorld
     
 If everything completed properly, you should see the following output:

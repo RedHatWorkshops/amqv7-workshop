@@ -125,6 +125,7 @@ topic.myTopicLookup = topic
 Now let's build our project and run:
 
     $ mvn -s example-settings.xml clean install
+    $ mvn -s example-settings.xml clean package dependency:copy-dependencies -DincludeScope=runtime -DskipTests
     $ java -cp "target/classes/:target/dependency/*" org.apache.qpid.jms.example.HelloWorld
     
 If everything completed properly, you should see the following output:

@@ -58,6 +58,7 @@ A rough agenda for the workshop looks like this:
 
 The slides are written in [RevealJS](http://lab.hakim.se/reveal-js/#/)/[Hyla](https://github.com/cmoulliard/hyla) which is basically a text (asciidoc) format and then converted into an HTML 5 slideshow presentation. 
 
+* [Technical slide deck for AMQ-7 broker + interconnect](http://bit.ly/amq-tech-slides)
 * [High-level overview of messaging landscape](slides/landscape.md)
 * [Why AMQ 7](slides/why-amq7.md)
 * [Deep Dive AMQ 7 broker](slides/deep-dive-broker.md)

@@ -121,10 +121,10 @@ In the root of the AMQ7 broker installation, there is an `examples` folder. Ther
 $ cd $AMQ7_BASE/examples/features/standard/request-reply
 ```
 
-Let's run the example. Note, just like in the previous sections, we need to have a broker running:
+Copy the example-settings.xml you used in previous labs to the request-reply directory.  Let's run the example. Note, just like in the previous sections, we need to have a broker running:
 
 ```bash
-$ mvn verify -DnoServer=true
+$ mvn -s example-settings.xml verify -DnoServer=true
 ```
 
 We should see an output like this:

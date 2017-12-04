@@ -90,3 +90,52 @@ If all goes well, the client should connect and start consuming messages from ou
 ```
 java -jar activemq-all-5.11.0.redhat-630187.jar producer --sleep 100 --messageCount 1000 --user read-only-user --password Abcd1234 --brokerUrl 'failover:(tcp://localhost:61616,tcp://localhost:61617)' --destination queue://test.readonly.queue
 ```
+### SSL
+
+This lab demonstrates generating keys and truststores to use for SSL with the broker.
+
+1. Ensure openssl is installed
+
+```
+sudo yum install openssl
+```
+
+2. Use openssl to generate the pem and p12 files.  Other file formats can be used by the pem and p12 are compatiable for usage with both the Artemis brokers and then Interconnect Routers
+
+```
+openssl req -newkey rsa:2048 -nodes -keyout keyout.pem -x509 -days 65000 -out certificate.pem
+openssl x509 -text -noout -in certificate.pem
+openssl pkcs12 -inkey keyout.pem -in certificate.pem -export -out certificate.p12
+openssl pkcs12 -in certificate.p12 -noout -info
+```
+Notice this results in the following files
+```
+keyout.pem
+certificate.pem
+certificate.p12
+```
+
+3. Configure SSL usage on the connectors and acceptors in the broker.xml
+
+```
+<acceptors>
+    <acceptor name="artemis">tcp://localhost:61616?sslEnabled=true;keyStorePath=certificate.p12;keyStorePassword=password;enabledProtocols=TLSv1,TLSv1.1,TLSv1.2;trustStorePath=certificate.p12;
+    trustStorePassword=password</acceptor>
+ </acceptors>
+ <connectors>
+      <connector name="my-connector">tcp://localhost:61616?sslEnabled=true;keyStorePath=certificate.p12;keyStorePassword=password;enabledProtocols=TLSv1,TLSv1.1,TLSv1.2;trustStorePath=certificate.p12;
+      trustStorePassword=password</connector>
+</connectors>
+```
+
+4. If you have multiple brokers configure those as well to ensure any clustering between the brokers will be able to communicate.
+
+5. Start up the brokers, notice that the Cluster Bridge connections should still occur, but this time over SSL
+
+6. Configure your client to use ssl, using a URL similar to the following
+
+```
+amqps://localhost:5672?transport.verifyHost=false&transport.storeType=PKCS12&transport.trustStoreLocation=/home/example/broker-secure/certificate.p12&transport.trustStorePassword=password
+```
+
+7. Start up your client and see it connect with SSL and consume or produce

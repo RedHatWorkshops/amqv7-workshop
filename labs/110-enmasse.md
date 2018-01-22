@@ -19,4 +19,10 @@ queue.myQueueLookup = queue
 ```
 java -cp "target/classes/:target/dependency/*" -DUSER="<insert your AMQ online user>" -DPASSWORD="<insert your AMQ online password>" org.apache.qpid.jms.example.Sender
 ```
-7. Check the Enmasse dashboard and it's been updated with the messages sent to "queue".
+7. Check the Enmasse dashboard and it's been updated with the messages sent to "queue".  You should see "10 messages sent".
+8.  Via the command line, execute the following command to consume the messages:
+
+```
+java -cp "target/classes/:target/dependency/*" -DUSER="<insert your AMQ online user>" -DPASSWORD="<insert your AMQ online password>" org.apache.qpid.jms.example.Receiver
+```
+9. The metrics in the Dashboard should be updated with 10 messages sent / received
